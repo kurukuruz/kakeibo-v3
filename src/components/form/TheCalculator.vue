@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue';
+import parseFormula from '../../commons/formula-parser';
 import CalculatorButton from './CalculatorButton.vue';
 
 interface IProps {
@@ -30,7 +31,7 @@ watchEffect(() => {
 });
 
 const updateVaue = () => {
-  innerValue.value = Function(`return (${innerFormula.value})`)();
+  innerValue.value = parseFormula(innerFormula.value);
 };
 
 const pop = () => {
