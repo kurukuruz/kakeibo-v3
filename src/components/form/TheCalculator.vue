@@ -30,12 +30,15 @@ watchEffect(() => {
   emit('update:formula', innerFormula.value);
 });
 
-const updateVaue = () => {
+const updateValue = () => {
   innerValue.value = parseFormula(innerFormula.value);
 };
 
-const pop = () => {
+const back = () => {
   innerFormula.value = innerFormula.value.slice(0, -1);
+  if (innerFormula.value.slice(-1).match(/[0-9]/)) {
+    updateValue();
+  }
 };
 
 const push = (v: number | string) => {
@@ -43,13 +46,13 @@ const push = (v: number | string) => {
     if (v > 0 || innerFormula.value.slice(-1).match(/[0-9]/)) {
       // 0以外または直前が数字の場合は数式に加える
       innerFormula.value += v;
-      updateVaue();
+      updateValue();
     }
     // 0を入れようとした際に直前が数字出ない場合は処理をしない
   } else if (innerFormula.value.length !== 0) {
     if (!innerFormula.value.slice(-1).match(/[0-9]/)) {
       // 直前が数値でない(=演算子である)場合は演算子を除去する
-      pop();
+      innerFormula.value = innerFormula.value.slice(0, -1);
     }
     innerFormula.value += v;
   }
@@ -71,7 +74,7 @@ const clearAll = () => {
       <CalculatorButton
         label="BK"
         narrow
-        @click="pop"
+        @click="back"
       />
       <CalculatorButton
         label="C"
