@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import Button from 'primevue/button';
+import TheCalculator from './form/TheCalculator.vue';
 
 defineProps<{ msg: string }>();
 
@@ -9,6 +10,7 @@ const label = computed(() => `count is: ${count.value}`);
 </script>
 
 <template>
+  <TheCalculator />
   <h1>{{ msg }}</h1>
 
   <p>
