@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue';
 import Button from 'primevue/button';
 import TheCalculator from './form/TheCalculator.vue';
+import TheCategorySelector from './form/TheCategorySelector.vue';
 
 defineProps<{ msg: string }>();
 
@@ -12,6 +13,7 @@ const formula = ref('');
 </script>
 
 <template>
+  <TheCategorySelector />
   <h1>{{ disp }}</h1>
   <h3>{{ formula }}</h3>
   <TheCalculator
