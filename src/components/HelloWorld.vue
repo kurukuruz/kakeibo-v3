@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import Button from 'primevue/button';
 
 defineProps<{ msg: string }>();
 
 const count = ref(0);
+const label = computed(() => `count is: ${count.value}`);
 </script>
 
 <template>
@@ -38,12 +40,11 @@ const count = ref(0);
     >Vue 3 Docs</a>
   </p>
 
-  <button
-    type="button"
+  <Button
+    :label="label"
+    icon="pi pi-check"
     @click="count++"
-  >
-    count is: {{ count }}
-  </button>
+  />
   <p>
     Edit
     <code>components/HelloWorld.vue</code> to test hot module replacement.
