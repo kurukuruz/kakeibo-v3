@@ -7,10 +7,17 @@ defineProps<{ msg: string }>();
 
 const count = ref(0);
 const label = computed(() => `count is: ${count.value}`);
+const disp = ref(0);
+const formula = ref('');
 </script>
 
 <template>
-  <TheCalculator />
+  <h1>{{ disp }}</h1>
+  <h3>{{ formula }}</h3>
+  <TheCalculator
+    v-model="disp"
+    v-model:formula="formula"
+  />
   <h1>{{ msg }}</h1>
 
   <p>
