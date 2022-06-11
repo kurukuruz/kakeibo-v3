@@ -11,7 +11,14 @@ const props = defineProps<IProps>();
 </script>
 
 <template>
-<div class="col" :class="{'col-6': props.double}">
-  <Button class="p-button-lg w-full" :class="{'h-2rem': props.narrow}" :label="props.label" />
-</div>
+  <div
+    class="col"
+    :class="{'col-6': props.double}"
+  >
+    <Button
+      class="p-button-lg w-full"
+      :class="{'h-2rem': props.narrow}"
+      :label="props.label"
+    />
+  </div>
 </template>
