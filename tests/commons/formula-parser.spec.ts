@@ -1,4 +1,4 @@
-import { parseFormula } from '../../src/commons/formula-parser';
+import parseFormula from '../../src/commons/formula-parser';
 
 test('2+3', () => {
   expect(parseFormula('2+3')).toBe(5);

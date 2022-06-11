@@ -13,10 +13,10 @@ const priorityOf = (operator: string) => {
       throw new Error(`対応外の演算子: ${operator}`);
   }
   return p;
-}
+};
 
-export const parseFormula = (formula: string) => {
-  if (!/^([0-9]+[\\+\\-\\*\\/])*[0-9]+$/.test(formula)) {
+const parseFormula = (formula: string) => {
+  if (!/^([0-9]+[+\-*/])*[0-9]+$/.test(formula)) {
     throw SyntaxError('対応外の数式です');
   }
 
@@ -26,23 +26,25 @@ export const parseFormula = (formula: string) => {
   const opeStack = [] as string[];
 
   // 入力トークン
-  const tokens = formula.matchAll(/([0-9]+|[\\+\\-\\*\\/])/g);
+  const tokens = formula.matchAll(/([0-9]+|[+\-*/])/g);
   let token = tokens.next();
   while (!token.done) {
     const currValue = token.value[0];
-  
+
     if (/^[0-9]+$/.test(currValue)) {
       queue.push(currValue);
     } else {
       let loop = true;
-      while(loop) {
-        if(opeStack.length > 0) {
+      while (loop) {
+        if (opeStack.length > 0) {
           const lastOpe = opeStack.slice(-1)[0];
           if (priorityOf(currValue) <= priorityOf(lastOpe)) {
             queue.push(opeStack.pop()!);
           } else {
             loop = false;
           }
+        } else {
+          loop = false;
         }
       }
       opeStack.push(currValue);
@@ -51,13 +53,13 @@ export const parseFormula = (formula: string) => {
     token = tokens.next();
   }
   let ope: string | undefined;
-  while(ope = opeStack.pop()) {
+  while ((ope = opeStack.pop())) {
     queue.push(ope);
   }
 
   const calcStack = [] as number[];
   let q: string | undefined;
-  while(q = queue.shift()) {
+  while ((q = queue.shift())) {
     if (/^[0-9]+$/.test(q)) {
       calcStack.push(Number(q));
     } else {
@@ -66,7 +68,7 @@ export const parseFormula = (formula: string) => {
       if (!a || !b) {
         throw Error('数値のスタック不足');
       }
-      switch(q) {
+      switch (q) {
         case '+':
           calcStack.push(a + b);
           break;
@@ -89,3 +91,5 @@ export const parseFormula = (formula: string) => {
   }
   return calcStack[0];
 };
+
+export default parseFormula;
