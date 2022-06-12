@@ -24,7 +24,7 @@ const options: IOption[] = [
   <Dropdown
     v-model="selected"
     :options="options"
-    placeholder="費目"
+    placeholder="（費目）"
   >
     <template #value="slotProps">
       <CategorySelectionRow

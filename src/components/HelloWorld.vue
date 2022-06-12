@@ -1,25 +1,16 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import Button from 'primevue/button';
-import TheCalculator from './form/TheCalculator.vue';
-import TheCategorySelector from './form/TheCategorySelector.vue';
+import TheFormDialog from './form/TheFormDialog.vue';
 
 defineProps<{ msg: string }>();
 
 const count = ref(0);
 const label = computed(() => `count is: ${count.value}`);
-const disp = ref(0);
-const formula = ref('');
 </script>
 
 <template>
-  <TheCategorySelector />
-  <h1>{{ disp }}</h1>
-  <h3>{{ formula }}</h3>
-  <TheCalculator
-    v-model="disp"
-    v-model:formula="formula"
-  />
+  <TheFormDialog />
   <h1>{{ msg }}</h1>
 
   <p>

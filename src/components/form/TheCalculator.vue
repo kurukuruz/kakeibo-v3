@@ -69,7 +69,7 @@ const clearAll = () => {
 </script>
 
 <template>
-  <div class="max-w-30rem">
+  <div>
     <div class="grid">
       <CalculatorButton
         label="BK"
