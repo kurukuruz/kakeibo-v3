@@ -21,17 +21,28 @@ const goPrevMonth = () => {
 const goNextMonth = () => {
   target.value = target.value.add(1, 'month');
 };
+const goToday = () => {
+  target.value = today;
+};
 </script>
 
 <template>
   <div class="surface-800 flex flex-column row-gap-1px p-1px">
-    <div class="bg-white">
+    <div class="flex align-items-center bg-white p-1">
+      <div>{{ target.month() + 1 }}<small class="text-500">&nbsp;{{ target.year() }}</small></div>
+      <div class="flex-grow-1">
+        <!-- spacer -->
+      </div>
+      <Button
+        icon="mdi mdi-calendar-today"
+        class="p-button-text p-button-rounded p-button-secondary"
+        @click="goToday"
+      />
       <Button
         icon="pi pi-chevron-left"
         class="p-button-text p-button-rounded p-button-secondary"
         @click="goPrevMonth"
       />
-      <span>{{ target.format('YYYY-MM-DD') }}</span>
       <Button
         icon="pi pi-chevron-right"
         class="p-button-text p-button-rounded p-button-secondary"
