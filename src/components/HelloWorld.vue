@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue';
 import Button from 'primevue/button';
 import TheFormDialog from './form/TheFormDialog.vue';
+import TheCalendar from './calendar/TheCalendar.vue';
 
 defineProps<{ msg: string }>();
 
@@ -11,6 +12,7 @@ const label = computed(() => `count is: ${count.value}`);
 
 <template>
   <TheFormDialog />
+  <TheCalendar />
   <h1>{{ msg }}</h1>
 
   <p>
