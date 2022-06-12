@@ -1,26 +1,46 @@
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { computed, reactive } from 'vue';
 
 interface IProps {
   value: number | string;
   selected?: boolean;
   today?: boolean;
+  extra?: boolean;
   dow?: number | string;
 }
 
 const props = defineProps<IProps>();
 
-const style = reactive({ color: '', backgroundColor: '' });
-if (props.dow === 'Sat' || props.dow === 6) {
-  style.color = 'blueviolet';
-} else if (props.dow === 'Sun' || props.dow === 0) {
-  style.color = 'crimson';
-} else {
-  style.color = '#424242';
-}
-if (props.today) {
-  style.backgroundColor = 'lavender';
-}
+const color = computed(() => {
+  if (props.selected) {
+    return 'white';
+  } if (props.dow === 'Sat' || props.dow === 6) {
+    return 'blueviolet';
+  } if (props.dow === 'Sun' || props.dow === 0) {
+    return 'crimson';
+  }
+  return 'var(--text-color)';
+});
+const backgroundColor = computed(() => {
+  if (props.selected) {
+    if (props.dow === 'Sat' || props.dow === 6) {
+      return 'blueviolet';
+    } if (props.dow === 'Sun' || props.dow === 0) {
+      return 'crimson';
+    }
+    return 'var(--text-color)';
+  } if (props.today) {
+    return 'lavender';
+  }
+  return '';
+});
+const opacity = computed(() => {
+  if (props.extra) {
+    return 0.6;
+  }
+  return 1;
+});
+const style = reactive({ color, backgroundColor, opacity });
 </script>
 
 <template>
