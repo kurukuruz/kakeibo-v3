@@ -6,6 +6,10 @@ import { computed, ref } from 'vue';
 
 interface IProps {
   date: Dayjs;
+  buttonLabel?: string;
+  buttonIcon?: string;
+  buttonIconPos?: 'left' | 'right' | 'top' | 'bottom';
+  buttonClass?: string;
 }
 
 interface IEmits {
@@ -46,7 +50,10 @@ const goNextDate = () => {
 
 <template>
   <Button
-    icon="pi pi-list"
+    :label="props.buttonLabel"
+    :icon="props.buttonIcon"
+    :icon-pos="props.buttonIconPos"
+    :class="props.buttonClass"
     @click="display = true"
   />
   <Dialog

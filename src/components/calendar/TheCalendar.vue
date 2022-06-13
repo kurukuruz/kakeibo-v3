@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import dayjs from 'dayjs';
 import Button from 'primevue/button';
-import { computed, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 import { daysOfMonth } from '../../commons/calendar-utils';
 import WeekHeader from './WeekHeader.vue';
 import DayOfMonth from './DayOfMonth.vue';
@@ -29,8 +29,12 @@ const goToday = () => {
 
 <template>
   <div class="surface-800 flex flex-column row-gap-1px p-1px">
-    <div class="flex align-items-center bg-white p-1">
-      <TheOneDayDialog v-model:date="target" />
+    <div class="flex align-items-center bg-white gap-1 p-1">
+      <TheOneDayDialog
+        v-model:date="target"
+        button-icon="pi pi-list"
+        button-class="p-button-text p-button-rounded p-button-secondary"
+      />
       <div>{{ target.month() + 1 }}<small class="text-500">&nbsp;{{ target.year() }}</small></div>
       <div class="flex-grow-1">
         <!-- spacer -->
