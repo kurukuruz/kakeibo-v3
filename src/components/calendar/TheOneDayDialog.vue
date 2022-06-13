@@ -3,6 +3,7 @@ import { Dayjs } from 'dayjs';
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
 import { computed, ref } from 'vue';
+import TheFormDialog from '../form/TheFormDialog.vue';
 
 interface IProps {
   date: Dayjs;
@@ -63,8 +64,12 @@ const goNextDate = () => {
   >
     <template #header>
       <div class="flex align-items-center">
-        <div class="p-dialog-title">
-          {{ innerDate.format('YYYY-MM-DD') }}
+        <TheFormDialog
+          button-icon="pi pi-plus"
+          button-class="p-button-text p-button-rounded p-button-secondary"
+        />
+        <div class="p-dialog-title align-self-stretch">
+          <span class="vertical-align-middle">{{ innerDate.format('YYYY-MM-DD') }}</span>
         </div>
         <div class="flex-grow-1">
           <!-- spacer -->

@@ -6,6 +6,7 @@ import { daysOfMonth } from '../../commons/calendar-utils';
 import WeekHeader from './WeekHeader.vue';
 import DayOfMonth from './DayOfMonth.vue';
 import TheOneDayDialog from './TheOneDayDialog.vue';
+import TheFormDialog from '../form/TheFormDialog.vue';
 
 const today = dayjs();
 const target = ref(today);
@@ -30,6 +31,10 @@ const goToday = () => {
 <template>
   <div class="surface-800 flex flex-column row-gap-1px p-1px">
     <div class="flex align-items-center bg-white gap-1 p-1">
+      <TheFormDialog
+        button-icon="pi pi-plus"
+        button-class="p-button-text p-button-rounded p-button-secondary"
+      />
       <TheOneDayDialog
         v-model:date="target"
         button-icon="pi pi-list"

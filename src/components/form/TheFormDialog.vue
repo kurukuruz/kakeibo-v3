@@ -7,6 +7,15 @@ import { ref } from 'vue';
 import TheCategorySelector from './TheCategorySelector.vue';
 import TheCalculator from './TheCalculator.vue';
 
+interface IProps {
+  buttonLabel?: string;
+  buttonIcon?: string;
+  buttonIconPos?: 'left' | 'right' | 'top' | 'bottom';
+  buttonClass?: string;
+}
+
+const props = defineProps<IProps>();
+
 const display = ref(false);
 const openDialog = () => {
   display.value = true;
@@ -18,16 +27,25 @@ const formula = ref('');
 
 <template>
   <Button
-    icon="pi pi-check"
+    :label="props.buttonLabel"
+    :icon="props.buttonIcon"
+    :icon-pos="props.buttonIconPos"
+    :class="props.buttonClass"
     @click="openDialog"
   />
-  <Dialog v-model:visible="display">
+  <Dialog
+    v-model:visible="display"
+    :modal="true"
+  >
     <template #header>
-      <Button
-        label="登録"
-        class="p-button-text"
-      />
-      テスト
+      <div class="flex align-items-center gap-1">
+        <Button
+          icon="pi pi-cloud-upload"
+        />
+        <div class="p-dialog-title align-self-stretch">
+          <span class="vertical-align-middle">TEST</span>
+        </div>
+      </div>
     </template>
     <TheCategorySelector class="w-full" />
     <TextArea
