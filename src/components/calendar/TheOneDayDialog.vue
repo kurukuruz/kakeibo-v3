@@ -3,7 +3,7 @@ import { Dayjs } from 'dayjs';
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
 import { computed, ref } from 'vue';
-import TheFormDialog from '../form/TheFormDialog.vue';
+import { useEntryFormStore } from '../../stores/entry-form';
 
 interface IProps {
   date: Dayjs;
@@ -47,6 +47,12 @@ const goNextDate = () => {
   innerDate.value = newVal;
   refresh(newVal);
 };
+
+const entryFormStore = useEntryFormStore();
+const showAddEntryDialog = () => {
+  entryFormStore.setNewEntry(props.date);
+  entryFormStore.showDialog();
+};
 </script>
 
 <template>
@@ -64,9 +70,10 @@ const goNextDate = () => {
   >
     <template #header>
       <div class="flex align-items-center">
-        <TheFormDialog
-          button-icon="pi pi-plus"
-          button-class="p-button-text p-button-rounded p-button-secondary"
+        <Button
+          icon="pi pi-plus"
+          class="p-button-text p-button-rounded p-button-secondary"
+          @click="showAddEntryDialog"
         />
         <div class="p-dialog-title align-self-stretch">
           <span class="vertical-align-middle">{{ innerDate.format('YYYY-MM-DD') }}</span>

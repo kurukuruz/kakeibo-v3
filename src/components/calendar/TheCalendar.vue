@@ -7,6 +7,7 @@ import WeekHeader from './WeekHeader.vue';
 import DayOfMonth from './DayOfMonth.vue';
 import TheOneDayDialog from './TheOneDayDialog.vue';
 import TheFormDialog from '../form/TheFormDialog.vue';
+import { useEntryFormStore } from '../../stores/entry-form';
 
 const today = dayjs();
 const target = ref(today);
@@ -26,14 +27,22 @@ const goNextMonth = () => {
 const goToday = () => {
   target.value = today;
 };
+
+const entryFormStore = useEntryFormStore();
+const showAddEntryDialog = () => {
+  entryFormStore.setNewEntry(target.value);
+  entryFormStore.showDialog();
+};
 </script>
 
 <template>
+  <TheFormDialog />
   <div class="surface-800 flex flex-column row-gap-1px p-1px">
     <div class="flex align-items-center bg-white gap-1 p-1">
-      <TheFormDialog
-        button-icon="pi pi-plus"
-        button-class="p-button-text p-button-rounded p-button-secondary"
+      <Button
+        icon="pi pi-plus"
+        class="p-button-text p-button-rounded p-button-secondary"
+        @click="showAddEntryDialog"
       />
       <TheOneDayDialog
         v-model:date="target"

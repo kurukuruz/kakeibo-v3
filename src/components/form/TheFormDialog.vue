@@ -4,35 +4,20 @@ import Button from 'primevue/button';
 import InputNumber from 'primevue/inputnumber';
 import TextArea from 'primevue/textarea';
 import { ref } from 'vue';
+import { storeToRefs } from 'pinia';
 import TheCategorySelector from './TheCategorySelector.vue';
 import TheCalculator from './TheCalculator.vue';
+import { useEntryFormStore } from '../../stores/entry-form';
 
-interface IProps {
-  buttonLabel?: string;
-  buttonIcon?: string;
-  buttonIconPos?: 'left' | 'right' | 'top' | 'bottom';
-  buttonClass?: string;
-}
+const entryFormStore = useEntryFormStore();
+const { display, entry } = storeToRefs(entryFormStore);
 
-const props = defineProps<IProps>();
-
-const display = ref(false);
-const openDialog = () => {
-  display.value = true;
-};
-
+const memo = ref<string>();
 const amount = ref(0);
 const formula = ref('');
 </script>
 
 <template>
-  <Button
-    :label="props.buttonLabel"
-    :icon="props.buttonIcon"
-    :icon-pos="props.buttonIconPos"
-    :class="props.buttonClass"
-    @click="openDialog"
-  />
   <Dialog
     v-model:visible="display"
     :modal="true"
@@ -43,12 +28,13 @@ const formula = ref('');
           icon="pi pi-cloud-upload"
         />
         <div class="p-dialog-title align-self-stretch">
-          <span class="vertical-align-middle">TEST</span>
+          <span class="vertical-align-middle">{{ entry.date }}</span>
         </div>
       </div>
     </template>
     <TheCategorySelector class="w-full" />
     <TextArea
+      v-model="memo"
       placeholder="（詳細）"
       row="2"
       class="w-full"
