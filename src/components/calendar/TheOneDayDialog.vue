@@ -82,5 +82,17 @@ const goNextDate = () => {
       </div>
     </template>
     Content
+    <template #footer>
+      <div class="flex flex-column">
+        <div class="flex justify-content-between">
+          <div>収入</div>
+          <div>-</div>
+        </div>
+        <div class="flex justify-content-between">
+          <div>支出</div>
+          <div>&yen;&nbsp;6,000</div>
+        </div>
+      </div>
+    </template>
   </Dialog>
 </template>
