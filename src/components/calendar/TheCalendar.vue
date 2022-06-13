@@ -9,7 +9,6 @@ import TheOneDayDialog from './TheOneDayDialog.vue';
 
 const today = dayjs();
 const target = ref(today);
-const targetDate = computed(() => target.value.format('YYYY-MM-DD'));
 const days = ref(daysOfMonth(target.value));
 watch(target, (curr, prev) => {
   if (!curr.isSame(prev, 'month')) {
@@ -31,7 +30,7 @@ const goToday = () => {
 <template>
   <div class="surface-800 flex flex-column row-gap-1px p-1px">
     <div class="flex align-items-center bg-white p-1">
-      <TheOneDayDialog :date="targetDate" />
+      <TheOneDayDialog v-model:date="target" />
       <div>{{ target.month() + 1 }}<small class="text-500">&nbsp;{{ target.year() }}</small></div>
       <div class="flex-grow-1">
         <!-- spacer -->
