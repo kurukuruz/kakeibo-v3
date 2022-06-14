@@ -12,6 +12,10 @@ import { useEntryFormStore } from '../../stores/entry-form';
 const entryFormStore = useEntryFormStore();
 const { display, entry } = storeToRefs(entryFormStore);
 
+const categoryId = computed({
+  get: () => entry.value.categoryId,
+  set: (newVal) => { entry.value.categoryId = newVal; },
+});
 const memo = computed({
   get: () => entry.value.memo,
   set: (newVal) => { entry.value.memo = newVal; },
@@ -41,7 +45,10 @@ watch(entry, () => {
         </div>
       </div>
     </template>
-    <TheCategorySelector class="w-full" />
+    <TheCategorySelector
+      v-model="categoryId"
+      class="w-full"
+    />
     <TextArea
       v-model="memo"
       placeholder="（詳細）"

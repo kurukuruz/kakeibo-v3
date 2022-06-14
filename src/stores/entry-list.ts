@@ -5,6 +5,7 @@ const demoData: IEntryDoc[] = [
   {
     id: '1',
     date: '2022-06-13',
+    categoryId: 'aaa',
     memo: 'テスト0613',
     amount: 100,
     createdAt: new Date(),
@@ -13,6 +14,7 @@ const demoData: IEntryDoc[] = [
   {
     id: '2',
     date: '2022-06-14',
+    categoryId: 'bbb',
     memo: 'テスト0614',
     amount: 200,
     createdAt: new Date(),
@@ -21,6 +23,7 @@ const demoData: IEntryDoc[] = [
   {
     id: '3',
     date: '2022-06-14',
+    categoryId: 'ccc',
     memo: 'テスト0614-2',
     amount: 1201,
     createdAt: new Date(),

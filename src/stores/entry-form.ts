@@ -12,6 +12,7 @@ export const useEntryFormStore = defineStore('entry-form', {
     display: false,
     entry: {
       date: '',
+      categoryId: '',
       amount: 0,
     },
   }),
