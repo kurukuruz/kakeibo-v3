@@ -4,6 +4,8 @@ import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
 import { computed, ref } from 'vue';
 import { useEntryFormStore } from '../../stores/entry-form';
+import { useEntryListStore } from '../../stores/entry-list';
+import EntryRow from './EntryRow.vue';
 
 interface IProps {
   date: Dayjs;
@@ -53,6 +55,9 @@ const showAddEntryDialog = () => {
   entryFormStore.setNewEntry(props.date);
   entryFormStore.showDialog();
 };
+
+const entryListStore = useEntryListStore();
+const entries = computed(() => entryListStore.selectByDate(innerDate.value.format('YYYY-MM-DD')));
 </script>
 
 <template>
@@ -93,7 +98,11 @@ const showAddEntryDialog = () => {
         />
       </div>
     </template>
-    Content
+    <EntryRow
+      v-for="entry in entries"
+      :key="entry.id"
+      :entry="entry"
+    />
     <template #footer>
       <div class="flex flex-column">
         <div class="flex justify-content-between">
