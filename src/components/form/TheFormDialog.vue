@@ -22,9 +22,7 @@ const amount = computed({
 });
 const formula = ref('');
 watch(entry, () => {
-  if (entry.value.amount > 0) {
-    formula.value = entry.value.amount.toString();
-  }
+  formula.value = entry.value.amount > 0 ? entry.value.amount.toString() : '';
 });
 </script>
 
