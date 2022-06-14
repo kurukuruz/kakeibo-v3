@@ -1,14 +1,19 @@
 import { Dayjs } from 'dayjs';
 import { defineStore } from 'pinia';
-import { IEntry, createNew } from '../domains/entry';
+import { IEntry, IEntryDoc, createNew } from '../domains/entry';
+
+interface IState {
+  display: boolean,
+  entry: IEntry | IEntryDoc,
+}
 
 export const useEntryFormStore = defineStore('entry-form', {
-  state: () => ({
+  state: (): IState => ({
     display: false,
     entry: {
       date: '',
       amount: 0,
-    } as IEntry,
+    },
   }),
   actions: {
     showDialog() {
@@ -16,6 +21,9 @@ export const useEntryFormStore = defineStore('entry-form', {
     },
     setNewEntry(date: Dayjs) {
       this.entry = createNew(date);
+    },
+    setExistingEntry(entry: IEntryDoc) {
+      this.entry = { ...entry };
     },
   },
 });

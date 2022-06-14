@@ -3,7 +3,7 @@ import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
 import InputNumber from 'primevue/inputnumber';
 import TextArea from 'primevue/textarea';
-import { ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 import TheCategorySelector from './TheCategorySelector.vue';
 import TheCalculator from './TheCalculator.vue';
@@ -12,9 +12,18 @@ import { useEntryFormStore } from '../../stores/entry-form';
 const entryFormStore = useEntryFormStore();
 const { display, entry } = storeToRefs(entryFormStore);
 
-const memo = ref<string>();
-const amount = ref(0);
+const memo = computed({
+  get: () => entry.value.memo,
+  set: (newVal) => { entry.value.memo = newVal; },
+});
+const amount = computed({
+  get: () => entry.value.amount,
+  set: (newVal) => { entry.value.amount = newVal; },
+});
 const formula = ref('');
+watch(entry, () => {
+  formula.value = entry.value.amount.toString();
+});
 </script>
 
 <template>
