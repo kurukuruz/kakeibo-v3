@@ -71,6 +71,7 @@ const entries = computed(() => entryListStore.selectByDate(innerDate.value.forma
   <Dialog
     v-model:visible="display"
     :modal="true"
+    class="p-dialog-maximized"
     @show="onShow"
   >
     <template #header>
