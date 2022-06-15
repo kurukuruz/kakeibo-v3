@@ -1,11 +1,8 @@
 <script setup lang="ts">
 import Dropdown from 'primevue/dropdown';
 import { computed } from 'vue';
-import CategorySelectionRow, { ICategoryOption } from './CategorySelectionRow.vue';
-
-interface IOption extends ICategoryOption {
-  value: string;
-}
+import CategorySelectionRow from './CategorySelectionRow.vue';
+import { useCategoryListStore } from '../../stores/category-list';
 
 interface IProps {
   modelValue: string;
@@ -19,20 +16,12 @@ const props = defineProps<IProps>();
 
 const emit = defineEmits<IEmits>();
 
-const options: IOption[] = [
-  {
-    value: 'aaa', name: '食費', icon: 'mdi-silverware', color: 'red',
-  },
-  {
-    value: 'bbb', name: '交通費', icon: 'mdi-train', color: 'teal',
-  },
-  { value: 'ccc', name: 'テスト', color: 'black' },
-  { value: 'ddd', name: 'その他', icon: 'mdi-information-variant' },
-];
+const categoryListStore = useCategoryListStore();
+const options = categoryListStore.categoriesListOf('payout');
 
 const selected = computed({
-  get: () => options.find((opt) => opt.value === props.modelValue),
-  set: (newVal) => { emit('update:modelValue', newVal?.value); },
+  get: () => options.find((opt) => opt.id === props.modelValue),
+  set: (newVal) => { emit('update:modelValue', newVal?.id); },
 });
 </script>
 
