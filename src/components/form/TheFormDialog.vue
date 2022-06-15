@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
+import ToggleButton from 'primevue/togglebutton';
 import InputNumber from 'primevue/inputnumber';
 import TextArea from 'primevue/textarea';
 import { computed, ref, watch } from 'vue';
@@ -27,6 +28,10 @@ const amount = computed({
 const formula = ref('');
 watch(entry, () => {
   formula.value = entry.value.amount > 0 ? entry.value.amount.toString() : '';
+});
+const isIncome = computed({
+  get: () => entry.value.division === 'income',
+  set: (newVal) => { entry.value.division = newVal ? 'income' : 'payout'; },
 });
 </script>
 
@@ -55,16 +60,27 @@ watch(entry, () => {
       row="2"
       class="w-full"
     />
-    <InputNumber
-      v-model="amount"
-      mode="currency"
-      currency="JPY"
-      locale="jp-JP"
-      class="w-full"
-      input-class="text-right"
-      aria-describedby="formula-formdialog"
-      readonly
-    />
+    <div class="flex">
+      <ToggleButton
+        v-model="isIncome"
+        on-label="収入"
+        on-icon="pi pi-sync"
+        off-label="支出"
+        off-icon="pi pi-sync"
+        icon-pos="right"
+        class="p-button-sm"
+      />
+      <InputNumber
+        v-model="amount"
+        mode="currency"
+        currency="JPY"
+        locale="jp-JP"
+        input-class="text-right"
+        aria-describedby="formula-formdialog"
+        readonly
+        class="flex-grow-1"
+      />
+    </div>
     <div class="w-full h-2rem p-2 text-right text-small">
       {{ formula }}
     </div>

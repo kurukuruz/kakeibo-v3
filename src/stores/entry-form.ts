@@ -14,6 +14,7 @@ export const useEntryFormStore = defineStore('entry-form', {
       date: '',
       categoryId: '',
       amount: 0,
+      division: 'payout',
     },
   }),
   actions: {
