@@ -123,12 +123,12 @@ const payout = computed(() => {
       :entry="entry"
     />
     <template #footer>
-      <div class="flex flex-column">
-        <div class="flex justify-content-between text-income">
+      <div class="grid">
+        <div class="col-6 flex justify-content-between text-income">
           <div>収入</div>
           <div>{{ income }}</div>
         </div>
-        <div class="flex justify-content-between text-payout">
+        <div class="col-6 flex justify-content-between text-payout">
           <div>支出</div>
           <div>{{ payout }}</div>
         </div>
