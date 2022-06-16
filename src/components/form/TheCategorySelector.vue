@@ -3,9 +3,11 @@ import Dropdown from 'primevue/dropdown';
 import { computed } from 'vue';
 import CategorySelectionRow from './CategorySelectionRow.vue';
 import { useCategoryListStore } from '../../stores/category-list';
+import { Division } from '../../types';
 
 interface IProps {
   modelValue: string;
+  division: Division;
 }
 
 interface IEmits {
@@ -17,10 +19,10 @@ const props = defineProps<IProps>();
 const emit = defineEmits<IEmits>();
 
 const categoryListStore = useCategoryListStore();
-const options = categoryListStore.categoriesListOf('payout');
+const options = computed(() => categoryListStore.categoriesListOf(props.division));
 
 const selected = computed({
-  get: () => options.find((opt) => opt.id === props.modelValue),
+  get: () => options.value.find((opt) => opt.id === props.modelValue),
   set: (newVal) => { emit('update:modelValue', newVal?.id); },
 });
 </script>

@@ -52,6 +52,7 @@ const isIncome = computed({
     </template>
     <TheCategorySelector
       v-model="categoryId"
+      v-model:division="entry.division"
       class="w-full"
     />
     <TextArea
