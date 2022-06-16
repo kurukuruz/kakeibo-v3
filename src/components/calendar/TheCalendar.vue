@@ -86,8 +86,7 @@ const showAddEntryDialog = () => {
       <DayOfMonth
         v-for="day in week"
         :key="day.unix()"
-        :value="day.date()"
-        :dow="day.day()"
+        :value="day"
         :today="day.isSame(today, 'date')"
         :extra="!day.isSame(target, 'month')"
         :selected="day.isSame(target, 'date')"

@@ -1,12 +1,15 @@
 <script setup lang="ts">
+import { Dayjs } from 'dayjs';
 import { computed, reactive } from 'vue';
+import { asJPY } from '../../commons/currency-utils';
+import { IEntryDoc } from '../../domains/entry';
+import { useEntryListStore } from '../../stores/entry-list';
 
 interface IProps {
-  value: number | string;
+  value: Dayjs;
   selected?: boolean;
   today?: boolean;
   extra?: boolean;
-  dow?: number | string;
 }
 
 const props = defineProps<IProps>();
@@ -14,22 +17,26 @@ const props = defineProps<IProps>();
 const color = computed(() => {
   if (props.selected) {
     return 'white';
-  } if (props.dow === 'Sat' || props.dow === 6) {
+  }
+  if (props.value.day() === 6) {
     return 'blueviolet';
-  } if (props.dow === 'Sun' || props.dow === 0) {
+  }
+  if (props.value.day() === 0) {
     return 'crimson';
   }
   return 'var(--text-color)';
 });
 const backgroundColor = computed(() => {
   if (props.selected) {
-    if (props.dow === 'Sat' || props.dow === 6) {
+    if (props.value.day() === 6) {
       return 'blueviolet';
-    } if (props.dow === 'Sun' || props.dow === 0) {
+    }
+    if (props.value.day() === 0) {
       return 'crimson';
     }
     return 'var(--text-color)';
-  } if (props.today) {
+  }
+  if (props.today) {
     return 'lavender';
   }
   return '';
@@ -41,21 +48,46 @@ const opacity = computed(() => {
   return 1;
 });
 const style = reactive({ color, backgroundColor, opacity });
+
+const entryListStore = useEntryListStore();
+const entries = computed(() => entryListStore.selectByDate(props.value.format('YYYY-MM-DD')));
+
+const strOfSumAmount = (eAry: IEntryDoc[]) => {
+  if (eAry.length) {
+    const sum = eAry.map((e) => e.amount).reduce((prev, curr) => prev + curr, 0);
+    return asJPY(sum);
+  }
+  return '-';
+};
+const income = computed(() => {
+  const incomeEntries = entries.value.filter((e) => e.division === 'income');
+  return strOfSumAmount(incomeEntries);
+});
+const payout = computed(() => {
+  const payoutEntries = entries.value.filter((e) => e.division === 'payout');
+  return strOfSumAmount(payoutEntries);
+});
 </script>
 
 <template>
-  <div class="flex flex-column align-items-center bg-white px-1 py-0">
+  <div class="flex flex-column align-items-center bg-white px-1 py-0 one-seventh">
     <div
       class="text-xs w-1rem h-1rem border-circle"
       :style="style"
     >
-      {{ value }}
+      {{ props.value.date() }}
     </div>
-    <div class="w-full text-right">
-      -
+    <div class="w-full text-xs text-right vertical-align-middle text-income">
+      {{ income }}
     </div>
-    <div class="w-full text-right">
-      -
+    <div class="w-full text-xs text-right vertical-align-middle text-payout">
+      {{ payout }}
     </div>
   </div>
 </template>
+
+<style scoped>
+.one-seventh {
+  width: 14.2857%; /* 100/7 */
+}
+</style>
