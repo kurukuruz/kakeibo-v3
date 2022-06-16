@@ -1,1 +1,1 @@
-export const asJPY = (num: number) => `\xA5${num.toLocaleString('jp-JP')}`;
+export const asJPY = (num: number) => `${num < 0 ? '▲' : ''}\xA5${Math.abs(num).toLocaleString('jp-JP')}`;

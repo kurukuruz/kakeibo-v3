@@ -6,6 +6,7 @@ import { daysOfMonth } from '../../commons/calendar-utils';
 import WeekHeader from './WeekHeader.vue';
 import DayOfMonth from './DayOfMonth.vue';
 import TheOneDayDialog from './TheOneDayDialog.vue';
+import AggregatedValue from './AggregatedValue.vue';
 import TheFormDialog from '../form/TheFormDialog.vue';
 import { useEntryFormStore } from '../../stores/entry-form';
 
@@ -94,6 +95,25 @@ const showAddEntryDialog = () => {
         @click="target = day"
       />
     </div>
+    <div class="flex gap-1px">
+      <div class="flex-grow-1 flex flex-column row-gap-1px one-half">
+        <AggregatedValue
+          division="income"
+          :amount="123456"
+        />
+        <AggregatedValue
+          division="payout"
+          :amount="12300"
+        />
+      </div>
+      <div class="flex-grow-1 flex one-half">
+        <AggregatedValue
+          division="balance"
+          :amount="-456"
+          class="flex-grow-1"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -106,6 +126,10 @@ const showAddEntryDialog = () => {
 }
 .p-1px {
   padding: 1px;
+}
+
+.one-half {
+  width: 50%;
 }
 </style>
 
