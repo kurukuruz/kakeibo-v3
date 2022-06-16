@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import Button from 'primevue/button';
-import Avatar from 'primevue/avatar';
 import { computed } from 'vue';
 import { IEntryDoc } from '../../domains/entry';
 import { useEntryFormStore } from '../../stores/entry-form';
 import { useCategoryListStore } from '../../stores/category-list';
 import { asJPY } from '../../commons/currency-utils';
+import CategoryAvatar from '../common/CategoryAvatar.vue';
 
 interface IProps {
   entry: IEntryDoc,
@@ -21,11 +21,6 @@ const showEditEntryDialog = () => {
 
 const categoryListStore = useCategoryListStore();
 const category = computed(() => categoryListStore.categoryOf(props.entry.categoryId));
-const avatarIcon = computed(() => {
-  const tag = category.value?.icon ? category.value.icon : 'mdi-circle-off-outline';
-  return `mdi ${tag}`;
-});
-const avatarColor = computed(() => (category.value?.icon ? '#FFF' : category.value?.color));
 </script>
 
 <template>
@@ -35,10 +30,9 @@ const avatarColor = computed(() => (category.value?.icon ? '#FFF' : category.val
       class="p-button-text p-button-rounded p-button-secondary"
       @click="showEditEntryDialog"
     />
-    <Avatar
-      :icon="avatarIcon"
-      shape="circle"
-      :style="{ 'color': avatarColor, 'background-color': category?.color}"
+    <CategoryAvatar
+      :icon="category?.icon"
+      :color="category?.color"
     />
     <div class="pl-1">
       <div>{{ category?.name }}</div>
