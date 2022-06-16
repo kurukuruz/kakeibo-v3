@@ -109,3 +109,12 @@ const showAddEntryDialog = () => {
   padding: 1px;
 }
 </style>
+
+<style>
+.text-income {
+  color: blue;
+}
+.text-payout {
+  color: red;
+}
+</style>

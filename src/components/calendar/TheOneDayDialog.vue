@@ -3,6 +3,8 @@ import { Dayjs } from 'dayjs';
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
 import { computed, ref } from 'vue';
+import { asJPY } from '../../commons/currency-utils';
+import { IEntryDoc } from '../../domains/entry';
 import { useEntryFormStore } from '../../stores/entry-form';
 import { useEntryListStore } from '../../stores/entry-list';
 import EntryRow from './EntryRow.vue';
@@ -58,6 +60,22 @@ const showAddEntryDialog = () => {
 
 const entryListStore = useEntryListStore();
 const entries = computed(() => entryListStore.selectByDate(innerDate.value.format('YYYY-MM-DD')));
+
+const strOfSumAmount = (eAry: IEntryDoc[]) => {
+  if (eAry.length) {
+    const sum = eAry.map((e) => e.amount).reduce((prev, curr) => prev + curr, 0);
+    return asJPY(sum);
+  }
+  return '-';
+};
+const income = computed(() => {
+  const incomeEntries = entries.value.filter((e) => e.division === 'income');
+  return strOfSumAmount(incomeEntries);
+});
+const payout = computed(() => {
+  const payoutEntries = entries.value.filter((e) => e.division === 'payout');
+  return strOfSumAmount(payoutEntries);
+});
 </script>
 
 <template>
@@ -106,13 +124,13 @@ const entries = computed(() => entryListStore.selectByDate(innerDate.value.forma
     />
     <template #footer>
       <div class="flex flex-column">
-        <div class="flex justify-content-between">
+        <div class="flex justify-content-between text-income">
           <div>収入</div>
-          <div>-</div>
+          <div>{{ income }}</div>
         </div>
-        <div class="flex justify-content-between">
+        <div class="flex justify-content-between text-payout">
           <div>支出</div>
-          <div>&yen;&nbsp;6,000</div>
+          <div>{{ payout }}</div>
         </div>
       </div>
     </template>

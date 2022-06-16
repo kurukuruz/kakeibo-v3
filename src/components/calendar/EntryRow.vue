@@ -41,7 +41,9 @@ const category = computed(() => categoryListStore.categoryOf(props.entry.categor
     <div class="flex-grow-1">
       <!-- spacer -->
     </div>
-    <div>{{ asJPY(props.entry.amount) }}</div>
+    <div :class="`text-${props.entry.division}`">
+      {{ asJPY(props.entry.amount) }}
+    </div>
   </div>
   <div style="margin: 0.5rem 0; border-top: 1px solid var(--surface-300)" />
 </template>
