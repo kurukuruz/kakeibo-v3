@@ -55,7 +55,7 @@ const entries = computed(() => entryListStore.selectByDate(props.value.format('Y
 const strOfSumAmount = (eAry: IEntryDoc[]) => {
   if (eAry.length) {
     const sum = eAry.map((e) => e.amount).reduce((prev, curr) => prev + curr, 0);
-    return asJPY(sum);
+    return sum.toLocaleString('jp-JP');
   }
   return '-';
 };
@@ -70,7 +70,7 @@ const payout = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-column align-items-center bg-white px-1 py-0 one-seventh">
+  <div class="flex flex-column align-items-center bg-white px-0 py-0 one-seventh">
     <div
       class="text-xs w-1rem h-1rem border-circle"
       :style="style"
