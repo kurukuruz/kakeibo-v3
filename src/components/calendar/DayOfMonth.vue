@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { Dayjs } from 'dayjs';
 import { computed, reactive } from 'vue';
-import { asJPY } from '../../commons/currency-utils';
 import { IEntryDoc } from '../../domains/entry';
 import { useEntryListStore } from '../../stores/entry-list';
 
