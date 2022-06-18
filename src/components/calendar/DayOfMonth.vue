@@ -71,7 +71,7 @@ const payout = computed(() => {
 <template>
   <div class="flex flex-column align-items-center bg-white px-0 py-0 one-seventh">
     <div
-      class="text-xs w-1rem h-1rem border-circle"
+      class="text-xs w-1rem h-1rem border-circle text-center"
       :style="style"
     >
       {{ props.value.date() }}
