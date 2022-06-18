@@ -60,5 +60,6 @@ export const useEntryListStore = defineStore('entry-list', {
   }),
   getters: {
     selectByDate: (state) => (date: string) => state.entries.filter((e) => e.date === date),
+    selectByYM: (state) => (ym: string) => state.entries.filter((e) => e.date.startsWith(ym)),
   },
 });

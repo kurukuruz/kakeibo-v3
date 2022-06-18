@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import dayjs from 'dayjs';
 import Button from 'primevue/button';
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { daysOfMonth } from '../../commons/calendar-utils';
 import WeekHeader from './WeekHeader.vue';
 import DayOfMonth from './DayOfMonth.vue';
@@ -9,6 +9,8 @@ import TheOneDayDialog from './TheOneDayDialog.vue';
 import AggregatedValue from './AggregatedValue.vue';
 import TheFormDialog from '../form/TheFormDialog.vue';
 import { useEntryFormStore } from '../../stores/entry-form';
+import { useEntryListStore } from '../../stores/entry-list';
+import { IEntryDoc } from '../../domains/entry';
 
 const today = dayjs();
 const target = ref(today);
@@ -34,6 +36,32 @@ const showAddEntryDialog = () => {
   entryFormStore.setNewEntry(target.value);
   entryFormStore.showDialog();
 };
+
+const entryListStore = useEntryListStore();
+const entriesOfMonth = computed(() => entryListStore.selectByYM(target.value.format('YYYY-MM')));
+const sumAmount = (eAry: IEntryDoc[]) => {
+  if (eAry.length) {
+    const sum = eAry.map((e) => e.amount).reduce((prev, curr) => prev + curr, 0);
+    return sum;
+  }
+  return undefined;
+};
+const incomeMonth = computed(() => {
+  const incomeEntries = entriesOfMonth.value.filter((e) => e.division === 'income');
+  return sumAmount(incomeEntries);
+});
+const payoutMonth = computed(() => {
+  const payoutEntries = entriesOfMonth.value.filter((e) => e.division === 'payout');
+  return sumAmount(payoutEntries);
+});
+const balanceMonth = computed(() => {
+  if (!incomeMonth.value && !payoutMonth.value) {
+    return undefined;
+  }
+  const i = incomeMonth.value ? incomeMonth.value : 0;
+  const p = payoutMonth.value ? payoutMonth.value : 0;
+  return i - p;
+});
 </script>
 
 <template>
@@ -99,17 +127,17 @@ const showAddEntryDialog = () => {
       <div class="flex-grow-1 flex flex-column row-gap-1px one-half">
         <AggregatedValue
           division="income"
-          :amount="123456"
+          :amount="incomeMonth"
         />
         <AggregatedValue
           division="payout"
-          :amount="12300"
+          :amount="payoutMonth"
         />
       </div>
       <div class="flex-grow-1 flex one-half">
         <AggregatedValue
           division="balance"
-          :amount="-456"
+          :amount="balanceMonth"
           class="flex-grow-1"
         />
       </div>
