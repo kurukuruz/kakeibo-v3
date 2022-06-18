@@ -30,12 +30,7 @@ const amountStr = computed(() => {
 <template>
   <div
     class="flex align-items-center bg-white text-sm p-1"
-    :class="{
-      'text-income': props.division === 'income',
-      'text-payout': props.division === 'payout',
-      'text-balance': props.division === 'balance',
-      'text-minus': props.amount && props.amount < 0,
-    }"
+    :class="[`text-${props.division}`, { 'text-minus': props.amount && props.amount < 0 }]"
   >
     <div>{{ divisionName }}</div>
     <div class="flex-grow-1">
