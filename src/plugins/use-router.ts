@@ -1,10 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import TheHomePage from '../pages/TheHomePage.vue';
-import Main from '../pages/Main.vue';
+import TheMainPage from '../pages/TheMainPage.vue';
 
 const routes = [
   { path: '/', component: TheHomePage },
-  { path: '/main', component: Main },
+  { path: '/main', component: TheMainPage },
 ];
 
 const router = createRouter({
