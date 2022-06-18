@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import TheAppBar from '../components/appmenu/TheAppBar.vue';
 import TheCalendar from '../components/calendar/TheCalendar.vue';
+import { useCategoryListStore } from '../stores/category-list';
+
+const categoryListStore = useCategoryListStore();
+categoryListStore.load('default');
 </script>
 
 <template>
