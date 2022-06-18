@@ -42,6 +42,7 @@ const upload = () => {
   } else {
     registerEntry('default', entry.value);
   }
+  display.value = false;
 };
 </script>
 
