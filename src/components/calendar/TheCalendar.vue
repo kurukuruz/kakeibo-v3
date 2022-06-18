@@ -38,6 +38,17 @@ const showAddEntryDialog = () => {
 };
 
 const entryListStore = useEntryListStore();
+
+const startSubscribe = () => {
+  entryListStore.subscribe(
+    'default',
+    days.value[0][0].format('YYYY-MM-DD'),
+    days.value.slice(-1)[0].slice(-1)[0].format('YYYY-MM-DD'),
+  );
+};
+startSubscribe();
+watch(days, startSubscribe);
+
 const entriesOfMonth = computed(() => entryListStore.selectByYM(target.value.format('YYYY-MM')));
 const sumAmount = (eAry: IEntryDoc[]) => {
   if (eAry.length) {

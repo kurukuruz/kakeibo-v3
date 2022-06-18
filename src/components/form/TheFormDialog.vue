@@ -9,6 +9,8 @@ import { storeToRefs } from 'pinia';
 import TheCategorySelector from './TheCategorySelector.vue';
 import TheCalculator from './TheCalculator.vue';
 import { useEntryFormStore } from '../../stores/entry-form';
+import { registerEntry, updateEntry } from '../../dba/entries';
+import { IEntryDoc } from '../../domains/entry';
 
 const entryFormStore = useEntryFormStore();
 const { display, entry } = storeToRefs(entryFormStore);
@@ -33,6 +35,14 @@ const isIncome = computed({
   get: () => entry.value.division === 'income',
   set: (newVal) => { entry.value.division = newVal ? 'income' : 'payout'; },
 });
+
+const upload = () => {
+  if ((entry.value as any).id) {
+    updateEntry('default', entry.value as IEntryDoc);
+  } else {
+    registerEntry('default', entry.value);
+  }
+};
 </script>
 
 <template>
@@ -44,6 +54,7 @@ const isIncome = computed({
       <div class="flex align-items-center gap-1">
         <Button
           icon="pi pi-cloud-upload"
+          @click="upload"
         />
         <div class="p-dialog-title align-self-stretch">
           <span class="vertical-align-middle">{{ entry.date }}</span>
