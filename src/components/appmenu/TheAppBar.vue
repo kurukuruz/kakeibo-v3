@@ -1,5 +1,12 @@
 <script setup lang="ts">
 import Button from 'primevue/button';
+import { ref } from 'vue';
+import TheSideBar from './TheSideBar.vue';
+
+const dispSideBar = ref(false);
+const showSideBar = () => {
+  dispSideBar.value = true;
+};
 </script>
 
 <template>
@@ -7,11 +14,13 @@ import Button from 'primevue/button';
     <Button
       icon="pi pi-bars"
       class="p-button-text p-button-rounded p-button-inherit"
+      @click="showSideBar"
     />
     <div class="title">
       krz家計簿
     </div>
   </div>
+  <TheSideBar v-model:display="dispSideBar" />
 </template>
 
 <style scoped>
