@@ -4,7 +4,7 @@ import TheCalendar from '../components/calendar/TheCalendar.vue';
 import { useCategoryListStore } from '../stores/category-list';
 
 const categoryListStore = useCategoryListStore();
-categoryListStore.load('default');
+categoryListStore.subscribe('default');
 </script>
 
 <template>

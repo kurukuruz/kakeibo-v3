@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { ICategoryDoc } from '../domains/category';
 import { Division } from '../types';
-import { getCategories } from '../dba/categories';
+import { subscribeCategories } from '../dba/categories';
 
 export const useCategoryListStore = defineStore('category-list', {
   state: () => ({
@@ -16,8 +16,10 @@ export const useCategoryListStore = defineStore('category-list', {
     ),
   },
   actions: {
-    async load(bookId: string) {
-      this.categories = await getCategories(bookId);
+    subscribe(bookId: string) {
+      subscribeCategories(bookId, (categories) => {
+        this.categories = categories;
+      });
     },
   },
 });
