@@ -7,7 +7,16 @@ interface IProps {
   category: ICategoryDoc,
 }
 
+interface IEmits {
+  (e: 'callEdit'): void
+}
+
 const props = defineProps<IProps>();
+const emit = defineEmits<IEmits>();
+
+const callEdit = () => {
+  emit('callEdit');
+};
 </script>
 
 <template>
@@ -25,6 +34,7 @@ const props = defineProps<IProps>();
     <Button
       icon="pi pi-pencil"
       class="p-button-text p-button-rounded p-button-secondary"
+      @click="callEdit"
     />
   </div>
 </template>

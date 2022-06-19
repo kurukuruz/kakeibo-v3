@@ -2,9 +2,11 @@
 import Dialog from 'primevue/dialog';
 import ToggleButton from 'primevue/togglebutton';
 import { computed, ref } from 'vue';
+import { ICategoryDoc } from '../../domains/category';
 import { useCategoryListStore } from '../../stores/category-list';
 import { Division } from '../../types';
 import CategoryRow from './CategoryRow.vue';
+import TheCategoryFormDialog from './TheCategoryFormDialog.vue';
 
 interface IProps {
   display: boolean,
@@ -31,6 +33,13 @@ const isIncome = computed({
   set: (newVal) => { division.value = newVal ? 'income' : 'payout'; },
 });
 const categories = computed(() => categoryListStore.categoriesListOf(division.value));
+
+const displayEditor = ref(false);
+const target = ref(categories.value[0]);
+const showCategoryEditor = (c: ICategoryDoc) => {
+  target.value = c;
+  displayEditor.value = true;
+};
 </script>
 
 <template>
@@ -58,11 +67,16 @@ const categories = computed(() => categoryListStore.categoriesListOf(division.va
     <div>
       <CategoryRow
         v-for="c in categories"
-        v-bind:key="c.id"
+        :key="c.id"
         :category="c"
+        @call-edit="showCategoryEditor(c)"
       />
     </div>
   </Dialog>
+  <TheCategoryFormDialog
+    v-model:display="displayEditor"
+    :category="target"
+  />
 </template>
 
 <style>
