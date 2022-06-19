@@ -19,7 +19,7 @@ router.beforeResolve((to, _, next) => {
   if (to.path === '/') {
     next();
   } else {
-    getAuth().onAuthStateChanged(user => {
+    getAuth().onAuthStateChanged((user) => {
       if (user) {
         next();
       } else {

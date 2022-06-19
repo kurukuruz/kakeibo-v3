@@ -1,4 +1,6 @@
-import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import {
+  collection, getDocs, orderBy, query,
+} from 'firebase/firestore';
 import { ICategory, ICategoryDoc } from '../domains/category';
 import db from '../plugins/use-firestore';
 

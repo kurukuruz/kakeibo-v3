@@ -19,5 +19,5 @@ export const useCategoryListStore = defineStore('category-list', {
     async load(bookId: string) {
       this.categories = await getCategories(bookId);
     },
-  }
+  },
 });
