@@ -6,6 +6,7 @@ import ColorPicker from 'primevue/colorpicker';
 import { computed, ref, watch } from 'vue';
 import { ICategoryDoc } from '../../domains/category';
 import CategorySelectionRow from '../form/CategorySelectionRow.vue';
+import { updateCategory } from '../../dba/categories';
 
 interface IProps {
   category: ICategoryDoc,
@@ -41,6 +42,11 @@ watch(props, () => {
   iconTemp.value = props.category.icon;
   colorTemp.value = props.category.color;
 });
+
+const upload = () => {
+  updateCategory('default', props.category.id, nameTemp.value, colorTemp.value, iconTemp.value);
+  innerDisplay.value = false;
+};
 </script>
 
 <template>
@@ -52,6 +58,7 @@ watch(props, () => {
       <Button
         icon="pi pi-check"
         class="p-button-text p-button-rounded"
+        @click="upload"
       />
       <CategorySelectionRow
         :name="nameTemp"
