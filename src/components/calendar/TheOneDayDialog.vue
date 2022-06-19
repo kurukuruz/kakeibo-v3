@@ -82,28 +82,26 @@ const payout = computed(() => {
     class="p-dialog-maximized"
   >
     <template #header>
-      <div class="flex align-items-center">
-        <Button
-          icon="pi pi-plus"
-          class="p-button-text p-button-rounded p-button-secondary"
-          @click="showAddEntryDialog"
-        />
-        <div class="p-dialog-title align-self-stretch">
-          <span class="vertical-align-middle">{{ innerDate.format('YYYY-MM-DD') }}</span>
-        </div>
-        <div class="flex-grow-1">
-          <!-- spacer -->
-        </div>
-        <Button
-          icon="pi pi-chevron-left"
-          class="p-button-text p-button-rounded p-button-secondary"
-          @click="goPrevDate"
-        />
-        <Button
-          icon="pi pi-chevron-right"
-          class="p-button-text p-button-rounded p-button-secondary"
-          @click="goNextDate"
-        />
+      <Button
+        icon="pi pi-plus"
+        class="p-button-text p-button-rounded p-button-secondary"
+        @click="showAddEntryDialog"
+      />
+      <div class="p-dialog-title mx-2">
+        <span>{{ innerDate.format('YYYY-MM-DD') }}</span>
+      </div>
+      <Button
+        icon="pi pi-chevron-left"
+        class="p-button-text p-button-rounded p-button-secondary"
+        @click="goPrevDate"
+      />
+      <Button
+        icon="pi pi-chevron-right"
+        class="p-button-text p-button-rounded p-button-secondary"
+        @click="goNextDate"
+      />
+      <div class="flex-grow-1">
+        <!-- spacer -->
       </div>
     </template>
     <EntryRow

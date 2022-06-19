@@ -52,14 +52,15 @@ const upload = () => {
     :modal="true"
   >
     <template #header>
-      <div class="flex align-items-center gap-1">
-        <Button
-          icon="pi pi-cloud-upload"
-          @click="upload"
-        />
-        <div class="p-dialog-title align-self-stretch">
-          <span class="vertical-align-middle">{{ entry.date }}</span>
-        </div>
+      <Button
+        icon="pi pi-cloud-upload"
+        @click="upload"
+      />
+      <div class="p-dialog-title ml-2">
+        <span>{{ entry.date }}</span>
+      </div>
+      <div class="flex-grow-1">
+        <!-- spacer -->
       </div>
     </template>
     <TheCategorySelector

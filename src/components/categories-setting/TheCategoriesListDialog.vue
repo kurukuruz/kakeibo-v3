@@ -49,19 +49,20 @@ const showCategoryEditor = (c: ICategoryDoc) => {
     class="p-dialog-maximized"
   >
     <template #header>
-      <div class="flex align-items-center gap-1">
-        <ToggleButton
-          v-model="isIncome"
-          on-label="収入"
-          on-icon="pi pi-sync"
-          off-label="支出"
-          off-icon="pi pi-sync"
-          icon-pos="right"
-          class="p-button-sm"
-        />
-        <div class="p-dialog-title align-self-center">
-          <span>費目一覧</span>
-        </div>
+      <ToggleButton
+        v-model="isIncome"
+        on-label="収入"
+        on-icon="pi pi-sync"
+        off-label="支出"
+        off-icon="pi pi-sync"
+        icon-pos="right"
+        class="p-button-sm"
+      />
+      <div class="p-dialog-title ml-2">
+        <span>費目一覧</span>
+      </div>
+      <div class="flex-grow-1">
+        <!-- spacer -->
       </div>
     </template>
     <div>
