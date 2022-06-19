@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
 import Dialog from 'primevue/dialog';
 import ToggleButton from 'primevue/togglebutton';
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { ICategoryDoc } from '../../domains/category';
+import { useBookListStore } from '../../stores/book-list';
 import { useCategoryListStore } from '../../stores/category-list';
 import { Division } from '../../types';
 import CategoryRow from './CategoryRow.vue';
@@ -40,6 +42,15 @@ const showCategoryEditor = (c: ICategoryDoc) => {
   target.value = c;
   displayEditor.value = true;
 };
+
+const bookListStore = useBookListStore();
+const { activeBookId } = storeToRefs(bookListStore);
+const startSubscribe = () => {
+  if (!activeBookId.value) return;
+  categoryListStore.subscribe(activeBookId.value);
+};
+startSubscribe();
+watch(activeBookId, startSubscribe);
 </script>
 
 <template>

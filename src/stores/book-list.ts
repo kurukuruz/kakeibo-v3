@@ -7,6 +7,11 @@ export const useBookListStore = defineStore('book-list', {
     books: [] as IBookDoc[],
     activeIndex: 0,
   }),
+  getters: {
+    activeBookId: (state) => (
+      state.books.length > state.activeIndex ? state.books[state.activeIndex].id : undefined
+    ),
+  },
   actions: {
     async load() {
       this.books = await getAllBooks();

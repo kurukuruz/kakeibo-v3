@@ -4,9 +4,11 @@ import Dialog from 'primevue/dialog';
 import InputText from 'primevue/inputtext';
 import ColorPicker from 'primevue/colorpicker';
 import { computed, ref, watch } from 'vue';
+import { storeToRefs } from 'pinia';
 import { ICategoryDoc } from '../../domains/category';
 import CategorySelectionRow from '../form/CategorySelectionRow.vue';
 import { updateCategory } from '../../dba/categories';
+import { useBookListStore } from '../../stores/book-list';
 
 interface IProps {
   category: ICategoryDoc,
@@ -43,8 +45,12 @@ watch(props, () => {
   colorTemp.value = props.category.color;
 });
 
+const bookListStore = useBookListStore();
+const { activeBookId } = storeToRefs(bookListStore);
+
 const upload = () => {
-  updateCategory('default', props.category.id, nameTemp.value, colorTemp.value, iconTemp.value);
+  if (!activeBookId.value) return;
+  updateCategory(activeBookId.value, props.category.id, nameTemp.value, colorTemp.value, iconTemp.value);
   innerDisplay.value = false;
 };
 </script>

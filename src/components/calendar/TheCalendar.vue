@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import Button from 'primevue/button';
 import { computed, ref, watch } from 'vue';
+import { storeToRefs } from 'pinia';
 import { daysOfMonth } from '../../commons/calendar-utils';
 import WeekHeader from './WeekHeader.vue';
 import DayOfMonth from './DayOfMonth.vue';
@@ -10,6 +11,7 @@ import AggregatedValue from './AggregatedValue.vue';
 import TheFormDialog from '../form/TheFormDialog.vue';
 import { useEntryFormStore } from '../../stores/entry-form';
 import { useEntryListStore } from '../../stores/entry-list';
+import { useBookListStore } from '../../stores/book-list';
 import { IEntryDoc } from '../../domains/entry';
 
 const today = dayjs();
@@ -37,17 +39,21 @@ const showAddEntryDialog = () => {
   entryFormStore.showDialog();
 };
 
+const bookListStore = useBookListStore();
+const { activeBookId } = storeToRefs(bookListStore);
+
 const entryListStore = useEntryListStore();
 
 const startSubscribe = () => {
+  if (!activeBookId.value) return;
   entryListStore.subscribe(
-    'default',
+    activeBookId.value,
     days.value[0][0].format('YYYY-MM-DD'),
     days.value.slice(-1)[0].slice(-1)[0].format('YYYY-MM-DD'),
   );
 };
 startSubscribe();
-watch(days, startSubscribe);
+watch([days, activeBookId], startSubscribe);
 
 const entriesOfMonth = computed(() => entryListStore.selectByYM(target.value.format('YYYY-MM')));
 const sumAmount = (eAry: IEntryDoc[]) => {

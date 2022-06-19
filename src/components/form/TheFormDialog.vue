@@ -11,6 +11,7 @@ import TheCalculator from './TheCalculator.vue';
 import { useEntryFormStore } from '../../stores/entry-form';
 import { registerEntry, updateEntry } from '../../dba/entries';
 import { IEntryDoc } from '../../domains/entry';
+import { useBookListStore } from '../../stores/book-list';
 
 const entryFormStore = useEntryFormStore();
 const { display, entry } = storeToRefs(entryFormStore);
@@ -36,11 +37,15 @@ const isIncome = computed({
   set: (newVal) => { entry.value.division = newVal ? 'income' : 'payout'; },
 });
 
+const bookListStore = useBookListStore();
+const { activeBookId } = storeToRefs(bookListStore);
+
 const upload = () => {
+  if (!activeBookId.value) return;
   if ((entry.value as any).id) {
-    updateEntry('default', entry.value as IEntryDoc);
+    updateEntry(activeBookId.value, entry.value as IEntryDoc);
   } else {
-    registerEntry('default', entry.value);
+    registerEntry(activeBookId.value, entry.value);
   }
   display.value = false;
 };

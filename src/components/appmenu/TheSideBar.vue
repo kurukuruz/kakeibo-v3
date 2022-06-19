@@ -64,7 +64,6 @@ bookListStore.load();
       :model="bookMenuItems"
       class="tab-vertical"
     />
-    <div>{{ activeIndex }}</div>
     <Menu
       :model="menuItems"
       class="w-full p-menu-nonborder"
