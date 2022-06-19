@@ -18,7 +18,7 @@ if (props.dow === 'Sat' || props.dow === 6) {
 
 <template>
   <div
-    class="bg-white p-0"
+    class="bg-white p-0 text-center"
     :style="style"
   >
     <span class="text-xs">{{ value }}</span>
