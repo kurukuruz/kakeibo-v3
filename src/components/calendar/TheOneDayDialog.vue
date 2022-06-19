@@ -33,23 +33,13 @@ const innerDate = computed({
 
 const display = ref(false);
 
-const refresh = (date: Dayjs) => {
-  console.log(`show with: ${date.format('YYYY-MM-DD HH:mm:ss.SSSZ')}`);
-};
-
-const onShow = () => {
-  refresh(props.date);
-};
-
 const goPrevDate = () => {
   const newVal = innerDate.value.subtract(1, 'day');
   innerDate.value = newVal;
-  refresh(newVal);
 };
 const goNextDate = () => {
   const newVal = innerDate.value.add(1, 'day');
   innerDate.value = newVal;
-  refresh(newVal);
 };
 
 const entryFormStore = useEntryFormStore();
@@ -90,7 +80,6 @@ const payout = computed(() => {
     v-model:visible="display"
     :modal="true"
     class="p-dialog-maximized"
-    @show="onShow"
   >
     <template #header>
       <div class="flex align-items-center">
