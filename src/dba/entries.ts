@@ -1,5 +1,5 @@
 import {
-  addDoc, collection, doc, onSnapshot, query, updateDoc, where,
+  addDoc, collection, deleteDoc, doc, onSnapshot, query, updateDoc, where,
 } from 'firebase/firestore';
 import { IEntry, IEntryDoc } from '../domains/entry';
 import db from '../plugins/use-firestore';
@@ -36,6 +36,10 @@ export const updateEntry = async (bookId: string, entry: IEntryDoc):Promise<IEnt
     ...entry,
     updatedAt: data.updatedAt,
   };
+};
+
+export const deleteEntry = async (bookId: string, entryId: string) => {
+  await deleteDoc(getEntryDocument(bookId, entryId));
 };
 
 let unsubscribe: Function;

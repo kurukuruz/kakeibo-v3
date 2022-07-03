@@ -15,6 +15,12 @@ export interface IEntryDoc extends IEntry {
   updatedAt: Date;
 }
 
+export const implementsEntryDoc = (arg: any): arg is IEntryDoc => (
+  arg !== null
+  && typeof arg === 'object'
+  && typeof arg.id === 'string'
+);
+
 export const createNew = (date: Dayjs): IEntry => ({
   date: date.format('YYYY-MM-DD'),
   categoryId: '',

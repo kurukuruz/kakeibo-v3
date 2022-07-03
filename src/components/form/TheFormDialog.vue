@@ -4,13 +4,18 @@ import Button from 'primevue/button';
 import ToggleButton from 'primevue/togglebutton';
 import InputNumber from 'primevue/inputnumber';
 import TextArea from 'primevue/textarea';
+import Divider from 'primevue/divider';
+import ConfirmDialog from 'primevue/confirmdialog';
+import Toast from 'primevue/toast';
+import { useConfirm } from 'primevue/useconfirm';
+import { useToast } from 'primevue/usetoast';
 import { computed, ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 import TheCategorySelector from './TheCategorySelector.vue';
 import TheCalculator from './TheCalculator.vue';
 import { useEntryFormStore } from '../../stores/entry-form';
-import { registerEntry, updateEntry } from '../../dba/entries';
-import { IEntryDoc } from '../../domains/entry';
+import { registerEntry, updateEntry, deleteEntry } from '../../dba/entries';
+import { implementsEntryDoc } from '../../domains/entry';
 import { useBookListStore } from '../../stores/book-list';
 
 const entryFormStore = useEntryFormStore();
@@ -42,12 +47,30 @@ const { activeBookId } = storeToRefs(bookListStore);
 
 const upload = () => {
   if (!activeBookId.value) return;
-  if ((entry.value as any).id) {
-    updateEntry(activeBookId.value, entry.value as IEntryDoc);
+  if (implementsEntryDoc(entry.value)) {
+    updateEntry(activeBookId.value, entry.value);
   } else {
     registerEntry(activeBookId.value, entry.value);
   }
   display.value = false;
+};
+
+const confirm = useConfirm();
+const toast = useToast();
+const confirmDelete = () => {
+  confirm.require({
+    header: '削除確認',
+    icon: 'pi pi-info-circle',
+    message: '本当に削除しますか？',
+    acceptClass: 'p-button-danger',
+    accept: () => {
+      if (activeBookId.value && implementsEntryDoc(entry.value)) {
+        deleteEntry(activeBookId.value, entry.value.id);
+        display.value = false;
+        toast.add({ severity: 'info', summary: '削除しました', life: 3000 });
+      }
+    },
+  });
 };
 </script>
 
@@ -55,6 +78,7 @@ const upload = () => {
   <Dialog
     v-model:visible="display"
     :modal="true"
+    class="sm:-dialog-maximized"
   >
     <template #header>
       <Button
@@ -107,5 +131,14 @@ const upload = () => {
       v-model="amount"
       v-model:formula="formula"
     />
+    <Divider />
+    <Button
+      icon="pi pi-trash"
+      label="削除"
+      class="p-button-danger"
+      @click="confirmDelete"
+    />
   </Dialog>
+  <ConfirmDialog />
+  <Toast />
 </template>
