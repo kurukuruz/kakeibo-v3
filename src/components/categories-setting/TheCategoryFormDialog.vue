@@ -5,13 +5,13 @@ import InputText from 'primevue/inputtext';
 import ColorPicker from 'primevue/colorpicker';
 import { computed, ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
-import { ICategoryDoc } from '../../domains/category';
+import { ICategory, ICategoryDoc, implementsCategoryDoc } from '../../domains/category';
 import CategorySelectionRow from '../form/CategorySelectionRow.vue';
-import { updateCategory } from '../../dba/categories';
+import { registerCategory, updateCategory } from '../../dba/categories';
 import { useBookListStore } from '../../stores/book-list';
 
 interface IProps {
-  category: ICategoryDoc,
+  category: ICategory | ICategoryDoc,
   display: boolean,
 }
 
@@ -50,7 +50,17 @@ const { activeBookId } = storeToRefs(bookListStore);
 
 const upload = () => {
   if (!activeBookId.value) return;
-  updateCategory(activeBookId.value, props.category.id, nameTemp.value, colorTemp.value, iconTemp.value);
+  if (implementsCategoryDoc(props.category)) {
+    updateCategory(activeBookId.value, props.category.id, nameTemp.value, colorTemp.value, iconTemp.value);
+  } else {
+    registerCategory(activeBookId.value, {
+      name: nameTemp.value,
+      color: colorTemp.value,
+      icon: iconTemp.value,
+      division: props.category.division,
+      order: props.category.order,
+    });
+  }
   innerDisplay.value = false;
 };
 </script>

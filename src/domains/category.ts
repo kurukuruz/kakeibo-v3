@@ -11,3 +11,9 @@ export interface ICategory {
 export interface ICategoryDoc extends ICategory {
   id: string;
 }
+
+export const implementsCategoryDoc = (arg: any): arg is ICategoryDoc => (
+  arg !== null
+  && typeof arg === 'object'
+  && typeof arg.id === 'string'
+);
