@@ -34,8 +34,15 @@ const updateValue = () => {
   innerValue.value = parseFormula(innerFormula.value);
 };
 
+const updateValueBy = (newVal: number) => {
+  innerValue.value = newVal;
+};
+
 const back = () => {
   innerFormula.value = innerFormula.value.slice(0, -1);
+  if (innerFormula.value === '') {
+    updateValueBy(0);
+  }
   if (innerFormula.value.slice(-1).match(/[0-9]/)) {
     updateValue();
   }
