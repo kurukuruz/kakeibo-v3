@@ -6,6 +6,7 @@ import Chart from 'primevue/chart';
 import { computed, ref } from 'vue';
 import { IEntryDoc } from '../../domains/entry';
 import { useEntryListStore } from '../../stores/entry-list';
+import { useCategoryListStore } from '../../stores/category-list';
 
 interface IProps {
   date: Dayjs;
@@ -43,25 +44,33 @@ const goNextMonth = () => {
 const entryListStore = useEntryListStore();
 const entries = computed(() => entryListStore.selectByYM(innerDate.value.format('YYYY-MM')));
 
-const strOfSumAmount = (eAry: IEntryDoc[]) => {
-  if (eAry.length) {
-    const sum = eAry.map((e) => e.amount).reduce((prev, curr) => prev + curr, 0);
-    return sum;
-  }
-  return 0;
-};
-const payout = computed(() => {
-  const payoutEntries = entries.value.filter((e) => e.division === 'payout');
-  return strOfSumAmount(payoutEntries);
-});
+const categoryListStore = useCategoryListStore();
+const options = computed(() => categoryListStore.categoriesListOf('payout'));
 
-const chartData = computed(() => ({
-  labels: ['one', 'two', 'three'],
-  datasets: [{
-    data: [payout.value, 20000, 30000],
-    backgroundColor: ['red', 'blue', 'green'],
-  }],
-}));
+const chartData = computed(() => {
+  // 費目ごとに集計
+  const payouts = entries.value
+    .filter((e) => e.division === 'payout')
+    .reduce((acc, val: IEntryDoc) => {
+      if (acc[val.categoryId]) {
+        acc[val.categoryId] += val.amount;
+      } else {
+        acc[val.categoryId] = val.amount;
+      }
+      return acc;
+    }, {} as {[key:string]: number});
+  // 選択肢の順番・色に割り当て
+  const payoutsStats = options.value
+    .map((c) => ({ name: c.name, color: c.color, amount: payouts[c.id] }))
+    .filter((c) => c.amount); // 使用していない費目は省略
+  return {
+    labels: payoutsStats.map((s) => s.name),
+    datasets: [{
+      data: payoutsStats.map((s) => s.amount),
+      backgroundColor: payoutsStats.map((s) => s.color),
+    }],
+  };
+});
 </script>
 
 <template>
