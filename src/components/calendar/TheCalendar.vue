@@ -9,6 +9,7 @@ import DayOfMonth from './DayOfMonth.vue';
 import TheOneDayDialog from './TheOneDayDialog.vue';
 import AggregatedValue from './AggregatedValue.vue';
 import TheFormDialog from '../form/TheFormDialog.vue';
+import TheMonthTotalsForEachCategory from '../stats/TheMonthTotalsForEachCategory.vue';
 import { useEntryFormStore } from '../../stores/entry-form';
 import { useEntryListStore } from '../../stores/entry-list';
 import { useBookListStore } from '../../stores/book-list';
@@ -160,6 +161,10 @@ const balanceMonth = computed(() => {
       </div>
     </div>
   </div>
+  <TheMonthTotalsForEachCategory
+    v-model:date="target"
+    button-icon="pi pi-chart-pie"
+  />
 </template>
 
 <style scoped>
