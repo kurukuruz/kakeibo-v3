@@ -7,6 +7,7 @@ import { computed, ref } from 'vue';
 import { IEntryDoc } from '../../domains/entry';
 import { useEntryListStore } from '../../stores/entry-list';
 import { useCategoryListStore } from '../../stores/category-list';
+import LegendItem from './LegendItem.vue';
 
 interface IProps {
   date: Dayjs;
@@ -47,7 +48,7 @@ const entries = computed(() => entryListStore.selectByYM(innerDate.value.format(
 const categoryListStore = useCategoryListStore();
 const options = computed(() => categoryListStore.categoriesListOf('payout'));
 
-const chartData = computed(() => {
+const payoutsStats = computed(() => {
   // 費目ごとに集計
   const payouts = entries.value
     .filter((e) => e.division === 'payout')
@@ -60,17 +61,26 @@ const chartData = computed(() => {
       return acc;
     }, {} as {[key:string]: number});
   // 選択肢の順番・色に割り当て
-  const payoutsStats = options.value
+  return options.value
     .map((c) => ({ name: c.name, color: c.color, amount: payouts[c.id] }))
     .filter((c) => c.amount); // 使用していない費目は省略
-  return {
-    labels: payoutsStats.map((s) => s.name),
-    datasets: [{
-      data: payoutsStats.map((s) => s.amount),
-      backgroundColor: payoutsStats.map((s) => s.color),
-    }],
-  };
 });
+
+const chartData = computed(() => ({
+  labels: payoutsStats.value.map((s) => s.name),
+  datasets: [{
+    data: payoutsStats.value.map((s) => s.amount),
+    backgroundColor: payoutsStats.value.map((s) => s.color),
+  }],
+}));
+
+const chartOptions = {
+  plugins: {
+    legend: {
+      display: false,
+    },
+  },
+};
 </script>
 
 <template>
@@ -84,6 +94,7 @@ const chartData = computed(() => {
   <Dialog
     v-model:visible="display"
     :modal="true"
+    class="p-dialog-maximized"
   >
     <template #header>
       <div class="p-dialog-title mx-2">
@@ -105,12 +116,21 @@ const chartData = computed(() => {
         <!-- spacer -->
       </div>
     </template>
-    <div>
+    <div class="flex flex-column justify-content-center">
       <Chart
         type="pie"
         :data="chartData"
+        :options="chartOptions"
         class="w-full md:w-30rem flex justify-content-center"
       />
+      <div class="flex flex-wrap justify-content-center m-2">
+        <LegendItem
+          v-for="(category, idx) in payoutsStats"
+          :key="idx"
+          :label="category.name"
+          :color="category.color"
+        />
+      </div>
     </div>
   </Dialog>
 </template>
