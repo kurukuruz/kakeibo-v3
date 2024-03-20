@@ -118,7 +118,7 @@ const balanceMonth = computed(() => {
     </div>
     <div class="flex gap-1px">
       <WeekHeader
-        v-for="day in ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']"
+        v-for="day in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']"
         :key="day"
         :value="day"
         :dow="day"
