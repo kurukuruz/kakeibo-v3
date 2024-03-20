@@ -3,7 +3,7 @@ import Sidebar from 'primevue/sidebar';
 import Menu from 'primevue/menu';
 import TabMenu from 'primevue/tabmenu';
 import { computed, ref } from 'vue';
-import { MenuItem } from 'primevue/menuitem';
+import type { MenuItem } from 'primevue/menuitem';
 import { storeToRefs } from 'pinia';
 import TheCategoriesListDialog from '../categories-setting/TheCategoriesListDialog.vue';
 import { useBookListStore } from '../../stores/book-list';
