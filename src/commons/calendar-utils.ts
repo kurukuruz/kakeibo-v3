@@ -4,6 +4,7 @@ import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 dayjs.extend(isSameOrBefore);
 dayjs.locale('mon-start', {
   weekStart: 1,
+  weekdaysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 });
 
 // eslint-disable-next-line import/prefer-default-export

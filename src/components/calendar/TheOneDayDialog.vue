@@ -87,8 +87,18 @@ const payout = computed(() => {
         class="p-button-text p-button-rounded p-button-secondary"
         @click="showAddEntryDialog"
       />
-      <div class="p-dialog-title mx-2">
+      <div
+        class="p-dialog-title mx-2 date-label"
+        :class="{
+          '-saturday': innerDate.day() === 6,
+          '-sunday': innerDate.day() === 0
+          }"
+      >
         <span>{{ innerDate.format('YYYY-MM-DD') }}</span>
+        <span class="text-base">&nbsp;{{ innerDate.format('ddd') }}</span>
+      </div>
+      <div class="flex-grow-1">
+        <!-- spacer -->
       </div>
       <Button
         icon="pi pi-chevron-left"
@@ -100,7 +110,7 @@ const payout = computed(() => {
         class="p-button-text p-button-rounded p-button-secondary"
         @click="goNextDate"
       />
-      <div class="flex-grow-1">
+      <div class="w-3rem">
         <!-- spacer -->
       </div>
     </template>
@@ -123,3 +133,14 @@ const payout = computed(() => {
     </template>
   </Dialog>
 </template>
+
+<style lang="scss" scoped>
+.date-label {
+  &.-saturday {
+    color: blueviolet;
+  }
+  &.-sunday {
+    color: crimson;
+  }
+}
+</style>

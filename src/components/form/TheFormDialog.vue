@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import dayjs from 'dayjs';
 import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
 import ToggleButton from 'primevue/togglebutton';
@@ -72,6 +73,8 @@ const confirmDelete = () => {
     },
   });
 };
+
+const innerDate = computed(() => dayjs(entry.value.date))
 </script>
 
 <template>
@@ -85,8 +88,15 @@ const confirmDelete = () => {
         icon="pi pi-cloud-upload"
         @click="upload"
       />
-      <div class="p-dialog-title ml-2">
+      <div
+        class="p-dialog-title ml-2 date-label"
+        :class="{
+          '-saturday': innerDate.day() === 6,
+          '-sunday': innerDate.day() === 0
+          }"
+      >
         <span>{{ entry.date }}</span>
+        <span class="text-base">&nbsp;{{ innerDate.format("ddd") }}</span>
       </div>
       <div class="flex-grow-1">
         <!-- spacer -->
@@ -142,3 +152,14 @@ const confirmDelete = () => {
   <ConfirmDialog />
   <Toast />
 </template>
+
+<style lang="scss" scoped>
+.date-label {
+  &.-saturday {
+    color: blueviolet;
+  }
+  &.-sunday {
+    color: crimson;
+  }
+}
+</style>
