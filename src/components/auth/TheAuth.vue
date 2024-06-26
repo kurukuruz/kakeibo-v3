@@ -17,6 +17,7 @@ onMounted(() => {
   if (authElm.value) {
     const ui = new firebaseui.auth.AuthUI(auth);
     ui.start(authElm.value, {
+      signInFlow: 'popup',
       signInOptions: [
         GoogleAuthProvider.PROVIDER_ID,
       ],
