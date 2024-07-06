@@ -84,10 +84,6 @@ const innerDate = computed(() => dayjs(entry.value.date))
     class="sm:-dialog-maximized"
   >
     <template #header>
-      <Button
-        icon="pi pi-cloud-upload"
-        @click="upload"
-      />
       <div
         class="p-dialog-title ml-2 date-label"
         :class="{
@@ -97,9 +93,6 @@ const innerDate = computed(() => dayjs(entry.value.date))
       >
         <span>{{ entry.date }}</span>
         <span class="text-base">&nbsp;{{ innerDate.format("ddd") }}</span>
-      </div>
-      <div class="flex-grow-1">
-        <!-- spacer -->
       </div>
     </template>
     <TheCategorySelector
@@ -141,13 +134,22 @@ const innerDate = computed(() => dayjs(entry.value.date))
       v-model="amount"
       v-model:formula="formula"
     />
-    <Divider />
-    <Button
-      icon="pi pi-trash"
-      label="削除"
-      class="p-button-danger"
-      @click="confirmDelete"
-    />
+    <template #footer>
+      <Button
+        icon="pi pi-trash"
+        label="削除"
+        severity="danger"
+        @click="confirmDelete"
+      />
+      <div class="flex-grow-1">
+        <!-- spacer -->
+      </div>
+      <Button
+        icon="pi pi-cloud-upload"
+        label="登録"
+        @click="upload"
+      />
+    </template>
   </Dialog>
   <ConfirmDialog />
   <Toast />

@@ -18,6 +18,7 @@ const props = defineProps<IProps>();
       class="p-button-lg w-full"
       :class="{'h-2rem': props.narrow}"
       :label="props.label"
+      severity="secondary"
     />
   </div>
 </template>
