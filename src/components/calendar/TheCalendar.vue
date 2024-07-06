@@ -87,24 +87,11 @@ const balanceMonth = computed(() => {
   <div class="surface-800 flex flex-column row-gap-1px p-1px">
     <div class="flex align-items-center bg-white gap-1 p-1">
       <Button
-        icon="pi pi-plus"
-        class="p-button-text p-button-rounded p-button-secondary"
-        @click="showAddEntryDialog"
-      />
-      <TheOneDayDialog
-        v-model:date="target"
-        button-icon="pi pi-list"
-        button-class="p-button-text p-button-rounded p-button-secondary"
-      />
-      <div>{{ target.month() + 1 }}<small class="text-500">&nbsp;{{ target.year() }}</small></div>
-      <div class="flex-grow-1">
-        <!-- spacer -->
-      </div>
-      <Button
         icon="mdi mdi-calendar-today"
         class="p-button-text p-button-rounded p-button-secondary"
         @click="goToday"
       />
+      <div>{{ target.month() + 1 }}<small class="text-500">&nbsp;{{ target.year() }}</small></div>
       <Button
         icon="pi pi-chevron-left"
         class="p-button-text p-button-rounded p-button-secondary"
@@ -114,6 +101,14 @@ const balanceMonth = computed(() => {
         icon="pi pi-chevron-right"
         class="p-button-text p-button-rounded p-button-secondary"
         @click="goNextMonth"
+      />
+      <div class="flex-grow-1">
+        <!-- spacer -->
+      </div>
+      <TheOneDayDialog
+        v-model:date="target"
+        button-icon="pi pi-list"
+        button-class="p-button-text p-button-rounded p-button-secondary"
       />
     </div>
     <div class="flex gap-1px">
@@ -160,6 +155,14 @@ const balanceMonth = computed(() => {
         />
       </div>
     </div>
+  </div>
+  <div class="my-2">
+    <Button
+      class="w-full"
+      icon="pi pi-plus"
+      label="追加"
+      @click="showAddEntryDialog"
+    />
   </div>
   <TheMonthTotalsForEachCategory
     v-model:date="target"
