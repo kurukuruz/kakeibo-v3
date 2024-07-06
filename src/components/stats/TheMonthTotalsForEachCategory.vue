@@ -116,7 +116,7 @@ const chartOptions = {
         <!-- spacer -->
       </div>
     </template>
-    <div class="flex flex-column justify-content-center">
+    <div class="flex flex-column justify-content-center align-items-center">
       <Chart
         type="pie"
         :data="chartData"
