@@ -10,6 +10,7 @@ import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 import '@mdi/font/css/materialdesignicons.css';
+import './assets/styles/global.css'
 import './plugins/use-firebase';
 
 createApp(App)

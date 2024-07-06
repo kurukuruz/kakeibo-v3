@@ -7,7 +7,7 @@ import TheCalendar from '../components/calendar/TheCalendar.vue';
   <div class="app-bar">
     <TheAppBar />
   </div>
-  <div class="content">
+  <div class="content narrow-content">
     <TheCalendar />
   </div>
 </template>

@@ -79,7 +79,7 @@ const payout = computed(() => {
   <Dialog
     v-model:visible="display"
     :modal="true"
-    class="p-dialog-maximized"
+    class="p-dialog-maximized narrow-content"
   >
     <template #header>
       <Button

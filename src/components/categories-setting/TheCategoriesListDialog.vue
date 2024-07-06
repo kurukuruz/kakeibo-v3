@@ -70,7 +70,7 @@ watch(activeBookId, startSubscribe);
   <Dialog
     v-model:visible="innerDisplay"
     :modal="true"
-    class="p-dialog-maximized"
+    class="p-dialog-maximized narrow-content"
   >
     <template #header>
       <ToggleButton
