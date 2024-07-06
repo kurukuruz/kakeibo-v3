@@ -82,11 +82,6 @@ const payout = computed(() => {
     class="p-dialog-maximized narrow-content"
   >
     <template #header>
-      <Button
-        icon="pi pi-plus"
-        class="p-button-text p-button-rounded p-button-secondary"
-        @click="showAddEntryDialog"
-      />
       <div
         class="p-dialog-title mx-2 date-label"
         :class="{
@@ -96,9 +91,6 @@ const payout = computed(() => {
       >
         <span>{{ innerDate.format('YYYY-MM-DD') }}</span>
         <span class="text-base">&nbsp;{{ innerDate.format('ddd') }}</span>
-      </div>
-      <div class="flex-grow-1">
-        <!-- spacer -->
       </div>
       <Button
         icon="pi pi-chevron-left"
@@ -110,7 +102,7 @@ const payout = computed(() => {
         class="p-button-text p-button-rounded p-button-secondary"
         @click="goNextDate"
       />
-      <div class="w-3rem">
+      <div class="flex-grow-1">
         <!-- spacer -->
       </div>
     </template>
@@ -128,6 +120,9 @@ const payout = computed(() => {
         <div class="col-6 flex justify-content-between align-items-center text-payout">
           <div>支出</div>
           <div>{{ payout }}</div>
+        </div>
+        <div class="col-12">
+          <Button class="w-full" icon="pi pi-plus" label="追加" @click="showAddEntryDialog" />
         </div>
       </div>
     </template>
