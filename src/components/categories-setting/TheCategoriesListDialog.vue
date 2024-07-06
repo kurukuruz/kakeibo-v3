@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
+import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
 import ToggleButton from 'primevue/togglebutton';
 import {
@@ -9,7 +10,6 @@ import { ICategory, ICategoryDoc } from '../../domains/category';
 import { useBookListStore } from '../../stores/book-list';
 import { useCategoryListStore } from '../../stores/category-list';
 import { Division } from '../../types';
-import CategoryAvatar from '../common/CategoryAvatar.vue';
 import CategoryRow from './CategoryRow.vue';
 import TheCategoryFormDialog from './TheCategoryFormDialog.vue';
 
@@ -90,21 +90,7 @@ watch(activeBookId, startSubscribe);
       </div>
     </template>
     <div>
-      <div
-        class="flex align-items-center p-2"
-        @click="showNewCategoryEditor"
-      >
-        <CategoryAvatar
-          icon="pi-plus"
-          color="var(--text-color-secondary)"
-        />
-        <div class="pl-1 text-color-secondary">
-          費目追加
-        </div>
-        <div class="flex-grow-1">
-          <!-- spacer -->
-        </div>
-      </div>
+      <Button icon="pi pi-plus" label="費目追加" severity="secondary" outlined class="w-full" @click="showNewCategoryEditor" />
       <CategoryRow
         v-for="c in categories"
         :key="c.id"
@@ -119,7 +105,7 @@ watch(activeBookId, startSubscribe);
   />
 </template>
 
-<style>
+<style scoped>
 .p-tabmenuitem.center-link > a {
   justify-content: center;
 }
