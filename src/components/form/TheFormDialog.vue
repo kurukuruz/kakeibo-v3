@@ -136,6 +136,7 @@ const innerDate = computed(() => dayjs(entry.value.date))
     />
     <template #footer>
       <Button
+        v-if="implementsEntryDoc(entry)"
         icon="pi pi-trash"
         label="削除"
         severity="danger"
@@ -146,7 +147,7 @@ const innerDate = computed(() => dayjs(entry.value.date))
       </div>
       <Button
         icon="pi pi-cloud-upload"
-        label="登録"
+        :label="implementsEntryDoc(entry) ? '更新' : '登録'"
         @click="upload"
       />
     </template>
