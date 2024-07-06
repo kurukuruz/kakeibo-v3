@@ -112,18 +112,18 @@ const payout = computed(() => {
       :entry="entry"
     />
     <template #footer>
-      <div class="grid w-full align-items-center">
-        <div class="col-6 flex justify-content-between align-items-center text-income">
-          <div>収入</div>
-          <div>{{ income }}</div>
+      <div class="w-full">
+        <div class="flex gap-4 my-2">
+          <div class="flex-grow-1 flex justify-content-between align-items-center text-income">
+            <div>収入</div>
+            <div>{{ income }}</div>
+          </div>
+          <div class="flex-grow-1 flex justify-content-between align-items-center text-payout">
+            <div>支出</div>
+            <div>{{ payout }}</div>
+          </div>
         </div>
-        <div class="col-6 flex justify-content-between align-items-center text-payout">
-          <div>支出</div>
-          <div>{{ payout }}</div>
-        </div>
-        <div class="col-12">
-          <Button class="w-full" icon="pi pi-plus" label="追加" @click="showAddEntryDialog" />
-        </div>
+        <Button class="w-full" icon="pi pi-plus" label="追加" @click="showAddEntryDialog" />
       </div>
     </template>
   </Dialog>
