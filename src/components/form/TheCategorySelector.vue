@@ -41,7 +41,9 @@ const selected = computed({
         :color="slotProps.value.color"
       />
       <span v-else>
-        {{ slotProps.placeholder }}
+        <CategorySelectionRow
+          name=""
+        />
       </span>
     </template>
     <template #option="slotProps">

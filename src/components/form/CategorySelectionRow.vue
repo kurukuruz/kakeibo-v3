@@ -11,7 +11,7 @@ const props = defineProps<ICategoryOption>();
 </script>
 
 <template>
-  <div>
+  <div class="w-1rem">
     <CategoryAvatar
       :icon="props.icon"
       :color="props.color"
