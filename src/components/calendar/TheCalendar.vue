@@ -137,6 +137,12 @@ const balanceMonth = computed(() => {
       />
     </div>
     <div class="flex gap-1px">
+      <div class="flex align-items-center bg-white p-1">
+        <TheMonthTotalsForEachCategory
+          v-model:date="target"
+          button-icon="pi pi-chart-pie"
+        />
+      </div>
       <div class="flex-grow-1 flex flex-column row-gap-1px one-half">
         <AggregatedValue
           division="income"
@@ -164,10 +170,6 @@ const balanceMonth = computed(() => {
       @click="showAddEntryDialog"
     />
   </div>
-  <TheMonthTotalsForEachCategory
-    v-model:date="target"
-    button-icon="pi pi-chart-pie"
-  />
 </template>
 
 <style scoped>
