@@ -90,7 +90,6 @@ watch(activeBookId, startSubscribe);
       </div>
     </template>
     <div>
-      <Button icon="pi pi-plus" label="費目追加" severity="secondary" outlined class="w-full" @click="showNewCategoryEditor" />
       <CategoryRow
         v-for="c in categories"
         :key="c.id"
@@ -98,6 +97,9 @@ watch(activeBookId, startSubscribe);
         @call-edit="showCategoryEditor(c)"
       />
     </div>
+    <template #footer>
+      <Button icon="pi pi-plus" label="費目追加" severity="secondary" outlined class="w-full" @click="showNewCategoryEditor" />
+    </template>
   </Dialog>
   <TheCategoryFormDialog
     v-model:display="displayEditor"
