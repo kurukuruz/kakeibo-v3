@@ -12,6 +12,13 @@ export default tsEslint.config(
       parserOptions: {
         parser: '@typescript-eslint/parser'
       }
+    },
+    rules: {
+      "vue/max-attributes-per-line": ["warn", {
+        "singleline": {
+        "max": 3
+        }
+      }]
     }
   }
 );

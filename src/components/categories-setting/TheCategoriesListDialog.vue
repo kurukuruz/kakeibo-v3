@@ -98,7 +98,14 @@ watch(activeBookId, startSubscribe);
       />
     </div>
     <template #footer>
-      <Button icon="pi pi-plus" label="費目追加" severity="secondary" outlined class="w-full" @click="showNewCategoryEditor" />
+      <Button
+        icon="pi pi-plus"
+        label="費目追加"
+        severity="secondary" 
+        outlined
+        class="w-full"
+        @click="showNewCategoryEditor"
+      />
     </template>
   </Dialog>
   <TheCategoryFormDialog

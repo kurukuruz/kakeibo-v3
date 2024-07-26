@@ -123,7 +123,12 @@ const payout = computed(() => {
             <div>{{ payout }}</div>
           </div>
         </div>
-        <Button class="w-full" icon="pi pi-plus" label="追加" @click="showAddEntryDialog" />
+        <Button
+          class="w-full" 
+          icon="pi pi-plus" 
+          label="追加" 
+          @click="showAddEntryDialog"
+        />
       </div>
     </template>
   </Dialog>
