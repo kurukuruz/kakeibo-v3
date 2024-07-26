@@ -3,8 +3,8 @@ import { defineStore } from 'pinia';
 import { IEntry, IEntryDoc, createNew } from '../domains/entry';
 
 interface IState {
-  display: boolean,
-  entry: IEntry | IEntryDoc,
+  display: boolean;
+  entry: IEntry | IEntryDoc;
 }
 
 export const useEntryFormStore = defineStore('entry-form', {

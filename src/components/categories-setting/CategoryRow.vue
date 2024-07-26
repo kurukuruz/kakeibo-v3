@@ -4,11 +4,11 @@ import { ICategoryDoc } from '../../domains/category';
 import CategoryAvatar from '../common/CategoryAvatar.vue';
 
 interface IProps {
-  category: ICategoryDoc,
+  category: ICategoryDoc;
 }
 
 interface IEmits {
-  (e: 'callEdit'): void
+  (e: 'callEdit'): void;
 }
 
 const props = defineProps<IProps>();

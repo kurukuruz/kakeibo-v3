@@ -73,7 +73,7 @@ const confirmDelete = () => {
   });
 };
 
-const innerDate = computed(() => dayjs(entry.value.date))
+const innerDate = computed(() => dayjs(entry.value.date));
 </script>
 
 <template>

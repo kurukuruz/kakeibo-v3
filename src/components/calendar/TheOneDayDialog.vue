@@ -18,7 +18,7 @@ interface IProps {
 }
 
 interface IEmits {
-  (e: 'update:date', value: Dayjs): void,
+  (e: 'update:date', value: Dayjs): void;
 }
 
 const props = defineProps<IProps>();
@@ -124,9 +124,9 @@ const payout = computed(() => {
           </div>
         </div>
         <Button
-          class="w-full" 
-          icon="pi pi-plus" 
-          label="追加" 
+          class="w-full"
+          icon="pi pi-plus"
+          label="追加"
           @click="showAddEntryDialog"
         />
       </div>

@@ -11,12 +11,12 @@ import { registerCategory, updateCategory } from '../../dba/categories';
 import { useBookListStore } from '../../stores/book-list';
 
 interface IProps {
-  category: ICategory | ICategoryDoc,
-  display: boolean,
+  category: ICategory | ICategoryDoc;
+  display: boolean;
 }
 
 interface IEmits {
-  (e: 'update:display', value: boolean): void,
+  (e: 'update:display', value: boolean): void;
 }
 
 const props = defineProps<IProps>();

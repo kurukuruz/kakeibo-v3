@@ -1,5 +1,5 @@
 import {
-  addDoc, collection, doc, onSnapshot, query, updateDoc, type Unsubscribe
+  addDoc, collection, doc, onSnapshot, query, updateDoc, type Unsubscribe,
 } from 'firebase/firestore';
 import { ICategory, ICategoryDoc } from '../domains/category';
 import db from '../plugins/use-firestore';
@@ -7,7 +7,7 @@ import db from '../plugins/use-firestore';
 const getCategoriesCollection = (bookId: string) => collection(db, 'books', bookId, 'categories');
 const getCategoryDocument = (bookId: string, categoryId: string) => doc(db, 'books', bookId, 'categories', categoryId);
 
-export const updateCategory = async (bookId: string, categoryId: string, name: string, color: string, icon?:string) => {
+export const updateCategory = async (bookId: string, categoryId: string, name: string, color: string, icon?: string) => {
   const data = {
     name,
     color,

@@ -11,7 +11,7 @@ interface IProps {
 }
 
 interface IEmits {
-  (e: 'update:modelValue', value?: string): void,
+  (e: 'update:modelValue', value?: string): void;
 }
 
 const props = defineProps<IProps>();

@@ -9,11 +9,11 @@ import TheCategoriesListDialog from '../categories-setting/TheCategoriesListDial
 import { useBookListStore } from '../../stores/book-list';
 
 interface IProps {
-  display: boolean,
+  display: boolean;
 }
 
 interface IEmits {
-  (e: 'update:display', value: boolean): void,
+  (e: 'update:display', value: boolean): void;
 }
 
 const props = defineProps<IProps>();

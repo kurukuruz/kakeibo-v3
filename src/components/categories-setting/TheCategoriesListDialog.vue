@@ -14,11 +14,11 @@ import CategoryRow from './CategoryRow.vue';
 import TheCategoryFormDialog from './TheCategoryFormDialog.vue';
 
 interface IProps {
-  display: boolean,
+  display: boolean;
 }
 
 interface IEmits {
-  (e: 'update:display', value: boolean): void,
+  (e: 'update:display', value: boolean): void;
 }
 
 const props = defineProps<IProps>();
@@ -101,7 +101,7 @@ watch(activeBookId, startSubscribe);
       <Button
         icon="pi pi-plus"
         label="費目追加"
-        severity="secondary" 
+        severity="secondary"
         outlined
         class="w-full"
         @click="showNewCategoryEditor"

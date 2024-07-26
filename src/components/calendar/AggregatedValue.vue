@@ -5,7 +5,7 @@ import { Division } from '../../types';
 
 interface IProps {
   amount?: number;
-  division: Division | 'balance'
+  division: Division | 'balance';
 }
 
 const props = defineProps<IProps>();

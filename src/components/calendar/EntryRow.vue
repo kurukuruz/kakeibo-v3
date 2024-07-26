@@ -8,7 +8,7 @@ import { asJPY } from '../../commons/currency-utils';
 import CategoryAvatar from '../common/CategoryAvatar.vue';
 
 interface IProps {
-  entry: IEntryDoc,
+  entry: IEntryDoc;
 }
 
 const props = defineProps<IProps>();
