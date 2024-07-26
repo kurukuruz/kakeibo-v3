@@ -5,7 +5,6 @@ import Button from 'primevue/button';
 import ToggleButton from 'primevue/togglebutton';
 import InputNumber from 'primevue/inputnumber';
 import TextArea from 'primevue/textarea';
-import Divider from 'primevue/divider';
 import ConfirmDialog from 'primevue/confirmdialog';
 import Toast from 'primevue/toast';
 import { useConfirm } from 'primevue/useconfirm';
@@ -89,7 +88,7 @@ const innerDate = computed(() => dayjs(entry.value.date))
         :class="{
           '-saturday': innerDate.day() === 6,
           '-sunday': innerDate.day() === 0
-          }"
+        }"
       >
         <span>{{ entry.date }}</span>
         <span class="text-base">&nbsp;{{ innerDate.format("ddd") }}</span>

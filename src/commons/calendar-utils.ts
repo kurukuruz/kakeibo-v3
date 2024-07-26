@@ -7,7 +7,6 @@ dayjs.locale('mon-start', {
   weekdaysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 });
 
-// eslint-disable-next-line import/prefer-default-export
 export const daysOfMonth = (target: Dayjs) => {
   const start = target.startOf('month').startOf('week');
   const end = target.endOf('month').endOf('week');

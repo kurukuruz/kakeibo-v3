@@ -1,5 +1,5 @@
 import {
-  addDoc, collection, doc, onSnapshot, query, updateDoc,
+  addDoc, collection, doc, onSnapshot, query, updateDoc, type Unsubscribe
 } from 'firebase/firestore';
 import { ICategory, ICategoryDoc } from '../domains/category';
 import db from '../plugins/use-firestore';
@@ -20,7 +20,7 @@ export const registerCategory = async (bookId: string, category: ICategory) => {
   await addDoc(getCategoriesCollection(bookId), category);
 };
 
-let unsubscribe: Function;
+let unsubscribe: Unsubscribe;
 export const subscribeCategories = async (bookId: string, callback: (e: ICategoryDoc[]) => void) => {
   if (unsubscribe) {
     unsubscribe();

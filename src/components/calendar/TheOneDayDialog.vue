@@ -87,7 +87,7 @@ const payout = computed(() => {
         :class="{
           '-saturday': innerDate.day() === 6,
           '-sunday': innerDate.day() === 0
-          }"
+        }"
       >
         <span>{{ innerDate.format('YYYY-MM-DD') }}</span>
         <span class="text-base">&nbsp;{{ innerDate.format('ddd') }}</span>
