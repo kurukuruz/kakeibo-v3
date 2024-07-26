@@ -13,7 +13,7 @@ import TheMonthTotalsForEachCategory from '../stats/TheMonthTotalsForEachCategor
 import { useEntryFormStore } from '../../stores/entry-form';
 import { useEntryListStore } from '../../stores/entry-list';
 import { useBookListStore } from '../../stores/book-list';
-import { IEntryDoc } from '../../domains/entry';
+import type { IEntryDoc } from '../../domains/entry';
 
 const today = dayjs();
 const target = ref(today);

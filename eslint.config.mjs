@@ -20,6 +20,8 @@ export default tsEslint.config(
       },
     },
     rules: {
+      '@typescript-eslint/consistent-type-imports': 'error',
+      '@typescript-eslint/no-import-type-side-effects': 'error',
       'vue/max-attributes-per-line': ['warn', {
         singleline: {
           max: 3,

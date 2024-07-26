@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { Dayjs } from 'dayjs';
+import type { Dayjs } from 'dayjs';
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
 import Chart from 'primevue/chart';
 import { computed, ref } from 'vue';
-import { IEntryDoc } from '../../domains/entry';
+import type { IEntryDoc } from '../../domains/entry';
 import { useEntryListStore } from '../../stores/entry-list';
 import { useCategoryListStore } from '../../stores/category-list';
 import LegendItem from './LegendItem.vue';

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Button from 'primevue/button';
 import { computed } from 'vue';
-import { IEntryDoc } from '../../domains/entry';
+import type { IEntryDoc } from '../../domains/entry';
 import { useEntryFormStore } from '../../stores/entry-form';
 import { useCategoryListStore } from '../../stores/category-list';
 import { asJPY } from '../../commons/currency-utils';

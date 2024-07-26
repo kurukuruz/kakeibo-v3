@@ -3,13 +3,14 @@ import { storeToRefs } from 'pinia';
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
 import ToggleButton from 'primevue/togglebutton';
+import type { Ref } from 'vue';
 import {
-  computed, Ref, ref, watch,
+  computed, ref, watch,
 } from 'vue';
-import { ICategory, ICategoryDoc } from '../../domains/category';
+import type { ICategory, ICategoryDoc } from '../../domains/category';
 import { useBookListStore } from '../../stores/book-list';
 import { useCategoryListStore } from '../../stores/category-list';
-import { Division } from '../../types';
+import type { Division } from '../../types';
 import CategoryRow from './CategoryRow.vue';
 import TheCategoryFormDialog from './TheCategoryFormDialog.vue';
 
