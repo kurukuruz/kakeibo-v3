@@ -15,6 +15,8 @@ export interface IEntryDoc extends IEntry {
   updatedAt: Date;
 }
 
+// TODO: ESLintエラーにならないようロジック修正
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const implementsEntryDoc = (arg: any): arg is IEntryDoc => (
   arg !== null
   && typeof arg === 'object'
