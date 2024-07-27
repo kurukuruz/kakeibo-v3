@@ -4,6 +4,9 @@ import tsEslint from 'typescript-eslint';
 import stylistic from '@stylistic/eslint-plugin';
 
 export default tsEslint.config(
+  {
+    ignores: ['.firebase', '.yarn', 'dist', 'node_modules'],
+  },
   eslint.configs.recommended,
   ...tsEslint.configs.recommended,
   ...pluginVue.configs['flat/recommended'],
