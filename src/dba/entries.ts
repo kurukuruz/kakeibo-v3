@@ -1,5 +1,5 @@
 import {
-  addDoc, collection, deleteDoc, doc, onSnapshot, query, updateDoc, where,
+  addDoc, collection, deleteDoc, doc, onSnapshot, query, updateDoc, where, type Unsubscribe,
 } from 'firebase/firestore';
 import { IEntry, IEntryDoc } from '../domains/entry';
 import db from '../plugins/use-firestore';
@@ -8,7 +8,7 @@ const getEntriesCollection = (bookId: string) => collection(db, 'books', bookId,
 
 const getEntryDocument = (bookId: string, entryId: string) => doc(db, 'books', bookId, 'entries', entryId);
 
-export const registerEntry = async (bookId: string, entry: IEntry):Promise<IEntryDoc> => {
+export const registerEntry = async (bookId: string, entry: IEntry): Promise<IEntryDoc> => {
   const data = {
     ...entry,
     createdAt: new Date(),
@@ -22,7 +22,7 @@ export const registerEntry = async (bookId: string, entry: IEntry):Promise<IEntr
   };
 };
 
-export const updateEntry = async (bookId: string, entry: IEntryDoc):Promise<IEntryDoc> => {
+export const updateEntry = async (bookId: string, entry: IEntryDoc): Promise<IEntryDoc> => {
   const data = {
     categoryId: entry.categoryId,
     memo: entry.memo,
@@ -42,7 +42,7 @@ export const deleteEntry = async (bookId: string, entryId: string) => {
   await deleteDoc(getEntryDocument(bookId, entryId));
 };
 
-let unsubscribe: Function;
+let unsubscribe: Unsubscribe;
 export const subscribeEntries = async (bookId: string, startDate: string, endDate: string, callback: (e: IEntryDoc[]) => void) => {
   if (unsubscribe) {
     unsubscribe();

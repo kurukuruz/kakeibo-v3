@@ -9,8 +9,8 @@ interface IProps {
 }
 
 interface IEmits {
-  (e: 'update:modelValue', value: number): void,
-  (e: 'update:formula', value: string): void,
+  (e: 'update:modelValue', value: number): void;
+  (e: 'update:formula', value: string): void;
 }
 
 const props = withDefaults(defineProps<IProps>(), {

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { asJPY } from '../../commons/currency-utils';
-import { Division } from '../../types';
+import type { Division } from '../../types';
 
 interface IProps {
   amount?: number;
-  division: Division | 'balance'
+  division: Division | 'balance';
 }
 
 const props = defineProps<IProps>();

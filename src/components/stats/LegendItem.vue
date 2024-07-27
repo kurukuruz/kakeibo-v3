@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface IProps {
-  label: string,
-  color: string,
+  label: string;
+  color: string;
 }
 
 const props = defineProps<IProps>();

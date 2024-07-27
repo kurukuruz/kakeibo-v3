@@ -8,12 +8,8 @@ export const useCategoryListStore = defineStore('category-list', {
     categories: [] as ICategoryDoc[],
   }),
   getters: {
-    categoriesListOf: (state) => (
-      (division: Division) => state.categories.filter((c) => c.division === division)
-    ),
-    categoryOf: (state) => (
-      (categoryId: string) => state.categories.find((c) => c.id === categoryId)
-    ),
+    categoriesListOf: (state) => (division: Division) => state.categories.filter((c) => c.division === division),
+    categoryOf: (state) => (categoryId: string) => state.categories.find((c) => c.id === categoryId),
   },
   actions: {
     subscribe(bookId: string) {

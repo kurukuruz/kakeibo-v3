@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Dayjs } from 'dayjs';
+import type { Dayjs } from 'dayjs';
 import { computed, reactive } from 'vue';
-import { IEntryDoc } from '../../domains/entry';
+import type { IEntryDoc } from '../../domains/entry';
 import { useEntryListStore } from '../../stores/entry-list';
 
 interface IProps {

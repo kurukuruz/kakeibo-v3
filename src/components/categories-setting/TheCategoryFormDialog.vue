@@ -5,18 +5,19 @@ import InputText from 'primevue/inputtext';
 import ColorPicker from 'primevue/colorpicker';
 import { computed, ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
-import { ICategory, ICategoryDoc, implementsCategoryDoc } from '../../domains/category';
+import type { ICategory, ICategoryDoc } from '../../domains/category';
+import { implementsCategoryDoc } from '../../domains/category';
 import CategorySelectionRow from '../form/CategorySelectionRow.vue';
 import { registerCategory, updateCategory } from '../../dba/categories';
 import { useBookListStore } from '../../stores/book-list';
 
 interface IProps {
-  category: ICategory | ICategoryDoc,
-  display: boolean,
+  category: ICategory | ICategoryDoc;
+  display: boolean;
 }
 
 interface IEmits {
-  (e: 'update:display', value: boolean): void,
+  (e: 'update:display', value: boolean): void;
 }
 
 const props = defineProps<IProps>();

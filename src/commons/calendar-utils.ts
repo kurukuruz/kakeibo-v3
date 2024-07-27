@@ -4,10 +4,9 @@ import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 dayjs.extend(isSameOrBefore);
 dayjs.locale('mon-start', {
   weekStart: 1,
-  weekdaysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  weekdaysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 });
 
-// eslint-disable-next-line import/prefer-default-export
 export const daysOfMonth = (target: Dayjs) => {
   const start = target.startOf('month').startOf('week');
   const end = target.endOf('month').endOf('week');

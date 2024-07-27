@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import Button from 'primevue/button';
-import { ICategoryDoc } from '../../domains/category';
+import type { ICategoryDoc } from '../../domains/category';
 import CategoryAvatar from '../common/CategoryAvatar.vue';
 
 interface IProps {
-  category: ICategoryDoc,
+  category: ICategoryDoc;
 }
 
 interface IEmits {
-  (e: 'callEdit'): void
+  (e: 'callEdit'): void;
 }
 
 const props = defineProps<IProps>();

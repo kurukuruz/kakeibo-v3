@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { Dayjs } from 'dayjs';
+import type { Dayjs } from 'dayjs';
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
 import { computed, ref } from 'vue';
 import { asJPY } from '../../commons/currency-utils';
-import { IEntryDoc } from '../../domains/entry';
+import type { IEntryDoc } from '../../domains/entry';
 import { useEntryFormStore } from '../../stores/entry-form';
 import { useEntryListStore } from '../../stores/entry-list';
 import EntryRow from './EntryRow.vue';
@@ -18,7 +18,7 @@ interface IProps {
 }
 
 interface IEmits {
-  (e: 'update:date', value: Dayjs): void,
+  (e: 'update:date', value: Dayjs): void;
 }
 
 const props = defineProps<IProps>();
@@ -87,7 +87,7 @@ const payout = computed(() => {
         :class="{
           '-saturday': innerDate.day() === 6,
           '-sunday': innerDate.day() === 0
-          }"
+        }"
       >
         <span>{{ innerDate.format('YYYY-MM-DD') }}</span>
         <span class="text-base">&nbsp;{{ innerDate.format('ddd') }}</span>
@@ -123,7 +123,12 @@ const payout = computed(() => {
             <div>{{ payout }}</div>
           </div>
         </div>
-        <Button class="w-full" icon="pi pi-plus" label="追加" @click="showAddEntryDialog" />
+        <Button
+          class="w-full"
+          icon="pi pi-plus"
+          label="追加"
+          @click="showAddEntryDialog"
+        />
       </div>
     </template>
   </Dialog>

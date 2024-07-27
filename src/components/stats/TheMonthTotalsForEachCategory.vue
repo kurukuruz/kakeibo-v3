@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { Dayjs } from 'dayjs';
+import type { Dayjs } from 'dayjs';
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
 import Chart from 'primevue/chart';
 import { computed, ref } from 'vue';
-import { IEntryDoc } from '../../domains/entry';
+import type { IEntryDoc } from '../../domains/entry';
 import { useEntryListStore } from '../../stores/entry-list';
 import { useCategoryListStore } from '../../stores/category-list';
 import LegendItem from './LegendItem.vue';
@@ -18,7 +18,7 @@ interface IProps {
 }
 
 interface IEmits {
-  (e: 'update:date', value: Dayjs): void,
+  (e: 'update:date', value: Dayjs): void;
 }
 
 const props = defineProps<IProps>();
@@ -59,7 +59,7 @@ const payoutsStats = computed(() => {
         acc[val.categoryId] = val.amount;
       }
       return acc;
-    }, {} as {[key:string]: number});
+    }, {} as { [key: string]: number });
   // 選択肢の順番・色に割り当て
   return options.value
     .map((c) => ({ name: c.name, color: c.color, amount: payouts[c.id] }))

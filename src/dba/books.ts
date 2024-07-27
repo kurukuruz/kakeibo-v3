@@ -4,7 +4,7 @@ import db from '../plugins/use-firestore';
 
 const getBooksCollection = () => collection(db, 'books');
 
-export const getAllBooks = async ():Promise<IBookDoc[]> => {
+export const getAllBooks = async (): Promise<IBookDoc[]> => {
   const q = query(getBooksCollection());
   const querySnapshot = await getDocs(q);
   const books: IBookDoc[] = [];

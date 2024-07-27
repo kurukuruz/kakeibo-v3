@@ -3,22 +3,23 @@ import { storeToRefs } from 'pinia';
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
 import ToggleButton from 'primevue/togglebutton';
+import type { Ref } from 'vue';
 import {
-  computed, Ref, ref, watch,
+  computed, ref, watch,
 } from 'vue';
-import { ICategory, ICategoryDoc } from '../../domains/category';
+import type { ICategory, ICategoryDoc } from '../../domains/category';
 import { useBookListStore } from '../../stores/book-list';
 import { useCategoryListStore } from '../../stores/category-list';
-import { Division } from '../../types';
+import type { Division } from '../../types';
 import CategoryRow from './CategoryRow.vue';
 import TheCategoryFormDialog from './TheCategoryFormDialog.vue';
 
 interface IProps {
-  display: boolean,
+  display: boolean;
 }
 
 interface IEmits {
-  (e: 'update:display', value: boolean): void,
+  (e: 'update:display', value: boolean): void;
 }
 
 const props = defineProps<IProps>();
@@ -98,7 +99,14 @@ watch(activeBookId, startSubscribe);
       />
     </div>
     <template #footer>
-      <Button icon="pi pi-plus" label="費目追加" severity="secondary" outlined class="w-full" @click="showNewCategoryEditor" />
+      <Button
+        icon="pi pi-plus"
+        label="費目追加"
+        severity="secondary"
+        outlined
+        class="w-full"
+        @click="showNewCategoryEditor"
+      />
     </template>
   </Dialog>
   <TheCategoryFormDialog

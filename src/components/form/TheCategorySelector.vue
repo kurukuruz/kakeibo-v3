@@ -3,7 +3,7 @@ import Dropdown from 'primevue/dropdown';
 import { computed } from 'vue';
 import CategorySelectionRow from './CategorySelectionRow.vue';
 import { useCategoryListStore } from '../../stores/category-list';
-import { Division } from '../../types';
+import type { Division } from '../../types';
 
 interface IProps {
   modelValue: string;
@@ -11,7 +11,7 @@ interface IProps {
 }
 
 interface IEmits {
-  (e: 'update:modelValue', value?: string): void,
+  (e: 'update:modelValue', value?: string): void;
 }
 
 const props = defineProps<IProps>();
