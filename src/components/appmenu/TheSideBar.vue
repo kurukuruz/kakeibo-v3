@@ -60,7 +60,7 @@ bookListStore.load();
 <template>
   <Sidebar v-model:visible="innerDisplay">
     <TabMenu
-      v-model:activeIndex="activeIndex"
+      v-model:active-index="activeIndex"
       :model="bookMenuItems"
       class="tab-vertical"
     />
