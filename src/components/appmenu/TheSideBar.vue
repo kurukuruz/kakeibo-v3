@@ -7,6 +7,7 @@ import type { MenuItem } from 'primevue/menuitem';
 import { storeToRefs } from 'pinia';
 import TheCategoriesListDialog from '../categories-setting/TheCategoriesListDialog.vue';
 import { useBookListStore } from '../../stores/book-list';
+import { APP_VERSION } from '../../version';
 
 interface IProps {
   display: boolean;
@@ -59,15 +60,20 @@ bookListStore.load();
 
 <template>
   <Sidebar v-model:visible="innerDisplay">
-    <TabMenu
-      v-model:active-index="activeIndex"
-      :model="bookMenuItems"
-      class="tab-vertical"
-    />
-    <Menu
-      :model="menuItems"
-      class="w-full p-menu-nonborder"
-    />
+    <div class="flex flex-column h-full">
+      <TabMenu
+        v-model:active-index="activeIndex"
+        :model="bookMenuItems"
+        class="tab-vertical"
+      />
+      <Menu
+        :model="menuItems"
+        class="w-full p-menu-nonborder"
+      />
+      <p class="mt-auto text-xs">
+        ver.{{ APP_VERSION }}
+      </p>
+    </div>
   </Sidebar>
   <TheCategoriesListDialog v-model:display="displayCategoriesList" />
 </template>
