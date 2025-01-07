@@ -69,7 +69,7 @@ const payout = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-column align-items-center bg-white px-0 py-0 one-seventh cursor-pointer hover:surface-100">
+  <div class="flex flex-column align-items-center bg-white px-0 py-0 one-seventh cursor-pointer hover-bg-surface-100">
     <div
       class="text-xs w-1rem h-1rem border-circle text-center"
       :style="style"
@@ -86,6 +86,12 @@ const payout = computed(() => {
 </template>
 
 <style scoped>
+.hover-bg-surface-100 {
+  &:hover {
+    background-color: var(--p-surface-100) !important;
+  }
+}
+
 .one-seventh {
   width: 14.2857%; /* 100/7 */
 }
