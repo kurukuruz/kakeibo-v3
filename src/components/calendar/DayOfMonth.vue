@@ -23,7 +23,7 @@ const color = computed(() => {
   if (props.value.day() === 0) {
     return 'crimson';
   }
-  return 'var(--text-color)';
+  return 'var(--p-text-color)';
 });
 const backgroundColor = computed(() => {
   if (props.selected) {
@@ -33,7 +33,7 @@ const backgroundColor = computed(() => {
     if (props.value.day() === 0) {
       return 'crimson';
     }
-    return 'var(--text-color)';
+    return 'var(--p-text-color)';
   }
   if (props.today) {
     return 'lavender';
