@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Sidebar from 'primevue/sidebar';
+import Drawer from 'primevue/drawer';
 import Menu from 'primevue/menu';
 import TabMenu from 'primevue/tabmenu';
 import { computed, ref } from 'vue';
@@ -59,7 +59,7 @@ bookListStore.load();
 </script>
 
 <template>
-  <Sidebar v-model:visible="innerDisplay">
+  <Drawer v-model:visible="innerDisplay">
     <div class="flex flex-column h-full">
       <TabMenu
         v-model:active-index="activeIndex"
@@ -74,7 +74,7 @@ bookListStore.load();
         ver.{{ APP_VERSION }}
       </p>
     </div>
-  </Sidebar>
+  </Drawer>
   <TheCategoriesListDialog v-model:display="displayCategoriesList" />
 </template>
 

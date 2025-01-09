@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Dropdown from 'primevue/dropdown';
+import Select from 'primevue/select';
 import { computed } from 'vue';
 import CategorySelectionRow from './CategorySelectionRow.vue';
 import { useCategoryListStore } from '../../stores/category-list';
@@ -28,7 +28,7 @@ const selected = computed({
 </script>
 
 <template>
-  <Dropdown
+  <Select
     v-model="selected"
     :options="options"
     class="h-3rem"
@@ -53,5 +53,5 @@ const selected = computed({
         :color="slotProps.option.color"
       />
     </template>
-  </Dropdown>
+  </Select>
 </template>
