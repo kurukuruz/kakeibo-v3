@@ -24,3 +24,9 @@ const avatarColor = computed(() => (props.icon ? '#FFF' : 'transparent'));
     :style="{ 'color': avatarColor, 'background-color': props.color}"
   />
 </template>
+
+<style>
+.mdi {
+  line-height: 1;
+}
+</style>

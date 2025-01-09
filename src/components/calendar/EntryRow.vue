@@ -45,5 +45,5 @@ const category = computed(() => categoryListStore.categoryOf(props.entry.categor
       {{ asJPY(props.entry.amount) }}
     </div>
   </div>
-  <div style="margin: 0.5rem 0; border-top: 1px solid var(--surface-300)" />
+  <div style="margin: 0.5rem 0; border-top: 1px solid var(--p-surface-300)" />
 </template>

@@ -26,14 +26,14 @@ const showSideBar = () => {
 <style scoped>
 .app-bar-content {
   color: white;
-  background-color: var(--surface-800);
+  background-color: var(--p-surface-800);
 }
 .p-button.p-button-text.p-button-inherit {
   color: inherit;
 }
 .p-button.p-button-text.p-button-inherit:enabled:hover {
   color: inherit;
-  background-color: var(--surface-500);
+  background-color: var(--p-surface-500);
 }
 .title {
   font-size: 1.25rem;

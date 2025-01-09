@@ -77,11 +77,13 @@ const upload = () => {
         class="p-button-text p-button-rounded"
         @click="upload"
       />
-      <CategorySelectionRow
+      <div class="white-space-nowrap">
+        <CategorySelectionRow
         :name="nameTemp"
         :icon="iconTemp"
         :color="colorTemp"
-      />
+        />
+      </div>
       <div class="flex-grow-1">
         <!-- spacer -->
       </div>

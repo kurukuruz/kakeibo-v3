@@ -84,7 +84,7 @@ const balanceMonth = computed(() => {
 
 <template>
   <TheFormDialog />
-  <div class="surface-800 flex flex-column row-gap-1px p-1px">
+  <div class="bg-surface-800 flex flex-column row-gap-1px p-1px">
     <div class="flex align-items-center bg-white gap-1 p-1">
       <Button
         icon="mdi mdi-calendar-today"
@@ -173,6 +173,9 @@ const balanceMonth = computed(() => {
 </template>
 
 <style scoped>
+.bg-surface-800 {
+  background-color: var(--p-surface-800);
+}
 .gap-1px {
   gap: 1px;
 }

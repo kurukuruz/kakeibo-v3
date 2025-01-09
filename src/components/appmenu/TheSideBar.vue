@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import Sidebar from 'primevue/sidebar';
+import Drawer from 'primevue/drawer';
 import Menu from 'primevue/menu';
-import TabMenu from 'primevue/tabmenu';
+import Tabs from 'primevue/tabs';
+import TabList from 'primevue/tablist';
+import Tab from 'primevue/tab';
 import { computed, ref } from 'vue';
 import type { MenuItem } from 'primevue/menuitem';
 import { storeToRefs } from 'pinia';
@@ -46,7 +48,7 @@ const menuItems: MenuItem[] = [
 const bookListStore = useBookListStore();
 const { books, activeIndex } = storeToRefs(bookListStore);
 const bookMenuItems = computed(() => (
-  books.value.map((b): MenuItem => {
+  books.value.map((b) => {
     const tag = b.icon ? b.icon : 'mdi-note-text-outline';
     const kind = tag.slice(0, tag.indexOf('-'));
     return {
@@ -59,13 +61,13 @@ bookListStore.load();
 </script>
 
 <template>
-  <Sidebar v-model:visible="innerDisplay">
+  <Drawer v-model:visible="innerDisplay">
     <div class="flex flex-column h-full">
-      <TabMenu
-        v-model:active-index="activeIndex"
-        :model="bookMenuItems"
-        class="tab-vertical"
-      />
+      <Tabs v-model:value="activeIndex">
+        <TabList class="tab-vertical">
+          <Tab v-for="(item, idx) in bookMenuItems" :key="item.label" :value="idx" class="p-menu-item-link" as="div"><i :class="item.icon" />{{ item.label }}</Tab>
+        </TabList>
+      </Tabs>
       <Menu
         :model="menuItems"
         class="w-full p-menu-nonborder"
@@ -74,7 +76,7 @@ bookListStore.load();
         ver.{{ APP_VERSION }}
       </p>
     </div>
-  </Sidebar>
+  </Drawer>
   <TheCategoriesListDialog v-model:display="displayCategoriesList" />
 </template>
 
@@ -83,16 +85,18 @@ bookListStore.load();
   border: 0px;
 }
 
-.tab-vertical .p-tabmenu-nav {
+.tab-vertical .p-tablist-tab-list {
   flex-direction: column;
+  border: none;
 }
-.p-tabmenu.tab-vertical .p-tabmenu-nav {
+.tab-vertical .p-tab {
   border-width: 0 2px 0 0;
+
+  &:not(.p-tab-active) {
+    border-color: transparent;
+  }
 }
-.p-tabmenu.tab-vertical .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link {
-  border-width: 0 2px 0 0;
-  margin: 0 -2px 0 0;
-  border-top-right-radius: 0px;
-  border-bottom-left-radius: 3px;
+.tab-vertical .p-tablist-active-bar {
+  display: none;
 }
 </style>

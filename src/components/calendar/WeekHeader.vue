@@ -12,7 +12,7 @@ if (props.dow === 'Sat' || props.dow === 6) {
 } else if (props.dow === 'Sun' || props.dow === 0) {
   style.color = 'crimson';
 } else {
-  style.color = 'var(--text-color)';
+  style.color = 'var(--p-text-color)';
 }
 </script>
 
