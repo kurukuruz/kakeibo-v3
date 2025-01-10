@@ -16,6 +16,9 @@ createApp(App)
   .use(PrimeVue, {
     theme: {
       preset: Aura,
+      options: {
+        darkModeSelector: false,
+      }
     }
   })
   .use(ConfirmationService)
