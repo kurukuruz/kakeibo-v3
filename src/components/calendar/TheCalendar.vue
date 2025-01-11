@@ -117,7 +117,7 @@ const balanceMonth = computed(() => {
         :key="day"
         :value="day"
         :dow="day"
-        class="col"
+        class="flex-1"
       />
     </div>
     <div
@@ -132,7 +132,7 @@ const balanceMonth = computed(() => {
         :today="day.isSame(today, 'date')"
         :extra="!day.isSame(target, 'month')"
         :selected="day.isSame(target, 'date')"
-        class="col"
+        class="flex-1"
         @click="target = day"
       />
     </div>
