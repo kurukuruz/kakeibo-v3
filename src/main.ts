@@ -8,7 +8,6 @@ import router from './plugins/use-router';
 import App from './App.vue';
 import './index.css';
 import 'primeicons/primeicons.css';
-import 'primeflex/primeflex.css';
 import '@mdi/font/css/materialdesignicons.css';
 import './assets/styles/global.scss';
 import './plugins/use-firebase';

@@ -123,10 +123,10 @@ const innerDate = computed(() => dayjs(entry.value.date));
         input-class="text-right"
         aria-describedby="formula-formdialog"
         readonly
-        class="flex-grow-1"
+        class="grow"
       />
     </div>
-    <div class="w-full h-2rem p-2 text-right text-small">
+    <div class="w-full h-8 p-2 text-right text-small">
       {{ formula }}
     </div>
     <TheCalculator
@@ -141,7 +141,7 @@ const innerDate = computed(() => dayjs(entry.value.date));
         severity="danger"
         @click="confirmDelete"
       />
-      <div class="flex-grow-1">
+      <div class="grow">
         <!-- spacer -->
       </div>
       <Button

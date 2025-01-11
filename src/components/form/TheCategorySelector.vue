@@ -31,7 +31,7 @@ const selected = computed({
   <Select
     v-model="selected"
     :options="options"
-    class="h-3rem"
+    class="h-12"
   >
     <template #value="slotProps">
       <CategorySelectionRow

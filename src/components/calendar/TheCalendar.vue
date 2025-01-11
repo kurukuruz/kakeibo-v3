@@ -84,14 +84,14 @@ const balanceMonth = computed(() => {
 
 <template>
   <TheFormDialog />
-  <div class="bg-surface-800 flex flex-column row-gap-1px p-1px">
-    <div class="flex align-items-center bg-white gap-1 p-1">
+  <div class="bg-surface-800 flex flex-col row-gap-1px p-1px">
+    <div class="flex items-center bg-white gap-1 p-1">
       <Button
         icon="mdi mdi-calendar-today"
         class="p-button-text p-button-rounded p-button-secondary"
         @click="goToday"
       />
-      <div>{{ target.month() + 1 }}<small class="text-500">&nbsp;{{ target.year() }}</small></div>
+      <div>{{ target.month() + 1 }}<small class="text-surface-500 dark:text-surface-300">&nbsp;{{ target.year() }}</small></div>
       <Button
         icon="pi pi-chevron-left"
         class="p-button-text p-button-rounded p-button-secondary"
@@ -102,7 +102,7 @@ const balanceMonth = computed(() => {
         class="p-button-text p-button-rounded p-button-secondary"
         @click="goNextMonth"
       />
-      <div class="flex-grow-1">
+      <div class="grow">
         <!-- spacer -->
       </div>
       <TheOneDayDialog
@@ -137,13 +137,13 @@ const balanceMonth = computed(() => {
       />
     </div>
     <div class="flex gap-1px">
-      <div class="flex align-items-center bg-white p-1">
+      <div class="flex items-center bg-white p-1">
         <TheMonthTotalsForEachCategory
           v-model:date="target"
           button-icon="pi pi-chart-pie"
         />
       </div>
-      <div class="flex-grow-1 flex flex-column row-gap-1px one-half">
+      <div class="grow flex flex-col row-gap-1px one-half">
         <AggregatedValue
           division="income"
           :amount="incomeMonth"
@@ -153,11 +153,11 @@ const balanceMonth = computed(() => {
           :amount="payoutMonth"
         />
       </div>
-      <div class="flex-grow-1 flex one-half">
+      <div class="grow flex one-half">
         <AggregatedValue
           division="balance"
           :amount="balanceMonth"
-          class="flex-grow-1"
+          class="grow"
         />
       </div>
     </div>

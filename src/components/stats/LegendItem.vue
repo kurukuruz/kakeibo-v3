@@ -9,7 +9,7 @@ const props = defineProps<IProps>();
 
 <template>
   <div
-    class="flex align-items-center mx-2"
+    class="flex items-center mx-2"
   >
     <div
       class="legend-square"
@@ -17,7 +17,7 @@ const props = defineProps<IProps>();
     >
       <!-- 凡例の四角 -->
     </div>
-    <div class="text-sm white-space-nowrap ml-1">
+    <div class="text-sm whitespace-nowrap ml-1">
       {{ props.label }}
     </div>
   </div>

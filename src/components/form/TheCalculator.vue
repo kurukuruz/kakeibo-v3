@@ -77,7 +77,7 @@ const clearAll = () => {
 
 <template>
   <div>
-    <div class="grid">
+    <div class="grid grid-cols-12 gap-4">
       <CalculatorButton
         label="BK"
         narrow
@@ -98,7 +98,7 @@ const clearAll = () => {
         @click="push('/')"
       />
     </div>
-    <div class="grid">
+    <div class="grid grid-cols-12 gap-4">
       <CalculatorButton
         label="7"
         @click="push(7)"
@@ -116,7 +116,7 @@ const clearAll = () => {
         @click="push('*')"
       />
     </div>
-    <div class="grid">
+    <div class="grid grid-cols-12 gap-4">
       <CalculatorButton
         label="4"
         @click="push(4)"
@@ -134,7 +134,7 @@ const clearAll = () => {
         @click="push('-')"
       />
     </div>
-    <div class="grid">
+    <div class="grid grid-cols-12 gap-4">
       <CalculatorButton
         label="1"
         @click="push(1)"
@@ -152,7 +152,7 @@ const clearAll = () => {
         @click="push('+')"
       />
     </div>
-    <div class="grid">
+    <div class="grid grid-cols-12 gap-4">
       <CalculatorButton
         label="0"
         double

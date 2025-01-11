@@ -77,18 +77,18 @@ const upload = () => {
         class="p-button-text p-button-rounded"
         @click="upload"
       />
-      <div class="white-space-nowrap">
+      <div class="whitespace-nowrap">
         <CategorySelectionRow
         :name="nameTemp"
         :icon="iconTemp"
         :color="colorTemp"
         />
       </div>
-      <div class="flex-grow-1">
+      <div class="grow">
         <!-- spacer -->
       </div>
     </template>
-    <div class="flex flex-column">
+    <div class="flex flex-col">
       <InputText v-model="nameTemp" />
       <InputText v-model="iconTemp" />
       <div>

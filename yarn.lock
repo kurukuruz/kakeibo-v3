@@ -5181,6 +5181,7 @@ __metadata:
     primevue: "npm:^4.2.5"
     sass: "npm:^1.83.1"
     tailwindcss: "npm:^3.4.17"
+    tailwindcss-primeui: "npm:^0.3.4"
     ts-jest: "npm:^29.2.5"
     typescript: "npm:^5.7.2"
     typescript-eslint: "npm:^8.19.1"
@@ -6668,6 +6669,15 @@ __metadata:
   version: 1.0.0
   resolution: "supports-preserve-symlinks-flag@npm:1.0.0"
   checksum: 10c0/6c4032340701a9950865f7ae8ef38578d8d7053f5e10518076e6554a9381fa91bd9c6850193695c141f32b21f979c985db07265a758867bac95de05f7d8aeb39
+  languageName: node
+  linkType: hard
+
+"tailwindcss-primeui@npm:^0.3.4":
+  version: 0.3.4
+  resolution: "tailwindcss-primeui@npm:0.3.4"
+  peerDependencies:
+    tailwindcss: ">=3.1.0"
+  checksum: 10c0/c45d8d3b46cd858ec2b4f1428a9602182921ac24f3dfe5d9521bf19bd5487d5c7e5d95cb8f5d7edd31812ed3459d5d9299e176e7c61f59e40dd1fac9eab4e326
   languageName: node
   linkType: hard
 

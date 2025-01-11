@@ -102,7 +102,7 @@ const payout = computed(() => {
         class="p-button-text p-button-rounded p-button-secondary"
         @click="goNextDate"
       />
-      <div class="flex-grow-1">
+      <div class="grow">
         <!-- spacer -->
       </div>
     </template>
@@ -113,12 +113,12 @@ const payout = computed(() => {
     />
     <template #footer>
       <div class="w-full">
-        <div class="flex gap-4 my-2">
-          <div class="flex-grow-1 flex justify-content-between align-items-center text-income">
+        <div class="flex gap-6 my-2">
+          <div class="grow flex justify-between items-center text-income">
             <div>収入</div>
             <div>{{ income }}</div>
           </div>
-          <div class="flex-grow-1 flex justify-content-between align-items-center text-payout">
+          <div class="grow flex justify-between items-center text-payout">
             <div>支出</div>
             <div>{{ payout }}</div>
           </div>

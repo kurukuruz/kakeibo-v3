@@ -29,11 +29,11 @@ const amountStr = computed(() => {
 
 <template>
   <div
-    class="flex align-items-center bg-white text-sm p-1"
+    class="flex items-center bg-white text-sm p-1"
     :class="[`text-${props.division}`, { 'text-minus': props.amount && props.amount < 0 }]"
   >
     <div>{{ divisionName }}</div>
-    <div class="flex-grow-1">
+    <div class="grow">
       <!-- spacer -->
     </div>
     <div class="amount">

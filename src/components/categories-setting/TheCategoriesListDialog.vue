@@ -86,7 +86,7 @@ watch(activeBookId, startSubscribe);
       <div class="p-dialog-title ml-2">
         <span>費目一覧</span>
       </div>
-      <div class="flex-grow-1">
+      <div class="grow">
         <!-- spacer -->
       </div>
     </template>
