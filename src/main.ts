@@ -6,7 +6,6 @@ import ToastService from 'primevue/toastservice';
 import { createPinia } from 'pinia';
 import router from './plugins/use-router';
 import App from './App.vue';
-import './index.css';
 import 'primeicons/primeicons.css';
 import '@mdi/font/css/materialdesignicons.css';
 import './assets/styles/global.scss';
