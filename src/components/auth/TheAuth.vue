@@ -28,9 +28,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1 v-if="isSigned">
+  <p v-if="isSigned" class="text-2xl">
     You are already signed in.
-  </h1>
+  </p>
   <div
     v-else
     ref="authElm"
