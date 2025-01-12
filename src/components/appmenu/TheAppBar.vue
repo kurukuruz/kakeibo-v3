@@ -10,7 +10,7 @@ const showSideBar = () => {
 </script>
 
 <template>
-  <div class="h-full w-full flex align-items-center gap-3 app-bar-content">
+  <div class="h-full w-full flex items-center gap-4 app-bar-content">
     <Button
       icon="pi pi-bars"
       class="p-button-text p-button-rounded p-button-inherit"

@@ -20,7 +20,7 @@ const callEdit = () => {
 </script>
 
 <template>
-  <div class="flex align-items-center p-2">
+  <div class="flex items-center p-2">
     <CategoryAvatar
       :icon="props.category.icon"
       :color="props.category.color"
@@ -28,7 +28,7 @@ const callEdit = () => {
     <div class="pl-1">
       {{ props.category.name }}
     </div>
-    <div class="flex-grow-1">
+    <div class="grow">
       <!-- spacer -->
     </div>
     <Button

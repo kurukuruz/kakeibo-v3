@@ -69,30 +69,18 @@ const payout = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-column align-items-center bg-white px-0 py-0 one-seventh cursor-pointer hover-bg-surface-100">
+  <div class="flex flex-col items-center bg-white px-0 py-0 cursor-pointer hover:bg-surface-100">
     <div
-      class="text-xs w-1rem h-1rem border-circle text-center"
+      class="text-xs w-4 h-4 rounded-full text-center"
       :style="style"
     >
       {{ props.value.date() }}
     </div>
-    <div class="w-full text-xs text-right vertical-align-middle text-income">
+    <div class="w-full text-xs text-right align-middle text-income">
       {{ income }}
     </div>
-    <div class="w-full text-xs text-right vertical-align-middle text-payout">
+    <div class="w-full text-xs text-right align-middle text-payout">
       {{ payout }}
     </div>
   </div>
 </template>
-
-<style scoped>
-.hover-bg-surface-100 {
-  &:hover {
-    background-color: var(--p-surface-100) !important;
-  }
-}
-
-.one-seventh {
-  width: 14.2857%; /* 100/7 */
-}
-</style>

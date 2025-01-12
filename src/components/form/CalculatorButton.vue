@@ -12,11 +12,11 @@ const props = defineProps<IProps>();
 
 <template>
   <div
-    :class="{'col-6': props.double, 'col-3': !props.double}"
+    :class="{'col-span-2': props.double}"
   >
     <Button
       class="p-button-lg w-full"
-      :class="{'h-2rem': props.narrow}"
+      :class="{'h-8': props.narrow}"
       :label="props.label"
       severity="secondary"
     />

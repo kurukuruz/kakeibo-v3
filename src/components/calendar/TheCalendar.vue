@@ -84,14 +84,14 @@ const balanceMonth = computed(() => {
 
 <template>
   <TheFormDialog />
-  <div class="bg-surface-800 flex flex-column row-gap-1px p-1px">
-    <div class="flex align-items-center bg-white gap-1 p-1">
+  <div class="bg-surface-800 grid grid-cols-7 gap-1px p-1px">
+    <div class="col-span-7 flex items-center bg-white gap-1 p-1">
       <Button
         icon="mdi mdi-calendar-today"
         class="p-button-text p-button-rounded p-button-secondary"
         @click="goToday"
       />
-      <div>{{ target.month() + 1 }}<small class="text-500">&nbsp;{{ target.year() }}</small></div>
+      <div>{{ target.month() + 1 }}<small class="text-surface-500 dark:text-surface-300">&nbsp;{{ target.year() }}</small></div>
       <Button
         icon="pi pi-chevron-left"
         class="p-button-text p-button-rounded p-button-secondary"
@@ -102,7 +102,7 @@ const balanceMonth = computed(() => {
         class="p-button-text p-button-rounded p-button-secondary"
         @click="goNextMonth"
       />
-      <div class="flex-grow-1">
+      <div class="grow">
         <!-- spacer -->
       </div>
       <TheOneDayDialog
@@ -111,19 +111,16 @@ const balanceMonth = computed(() => {
         button-class="p-button-text p-button-rounded p-button-secondary"
       />
     </div>
-    <div class="flex gap-1px">
-      <WeekHeader
-        v-for="day in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']"
-        :key="day"
-        :value="day"
-        :dow="day"
-        class="col"
-      />
-    </div>
-    <div
+    <WeekHeader
+      v-for="day in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']"
+      :key="day"
+      :value="day"
+      :dow="day"
+      class="flex-1"
+    />
+    <template
       v-for="week in days"
       :key="week[0].unix()"
-      class="flex gap-1px"
     >
       <DayOfMonth
         v-for="day in week"
@@ -132,34 +129,32 @@ const balanceMonth = computed(() => {
         :today="day.isSame(today, 'date')"
         :extra="!day.isSame(target, 'month')"
         :selected="day.isSame(target, 'date')"
-        class="col"
+        class="flex-1"
         @click="target = day"
       />
+    </template>
+    <div class="flex items-center justify-center bg-white p-1">
+      <TheMonthTotalsForEachCategory
+        v-model:date="target"
+        button-icon="pi pi-chart-pie"
+      />
     </div>
-    <div class="flex gap-1px">
-      <div class="flex align-items-center bg-white p-1">
-        <TheMonthTotalsForEachCategory
-          v-model:date="target"
-          button-icon="pi pi-chart-pie"
-        />
-      </div>
-      <div class="flex-grow-1 flex flex-column row-gap-1px one-half">
-        <AggregatedValue
-          division="income"
-          :amount="incomeMonth"
-        />
-        <AggregatedValue
-          division="payout"
-          :amount="payoutMonth"
-        />
-      </div>
-      <div class="flex-grow-1 flex one-half">
-        <AggregatedValue
-          division="balance"
-          :amount="balanceMonth"
-          class="flex-grow-1"
-        />
-      </div>
+    <div class="col-span-3 flex flex-col gap-1px">
+      <AggregatedValue
+        division="income"
+        :amount="incomeMonth"
+      />
+      <AggregatedValue
+        division="payout"
+        :amount="payoutMonth"
+      />
+    </div>
+    <div class="col-span-3 flex">
+      <AggregatedValue
+        division="balance"
+        :amount="balanceMonth"
+        class="grow"
+      />
     </div>
   </div>
   <div class="my-2">
@@ -173,21 +168,11 @@ const balanceMonth = computed(() => {
 </template>
 
 <style scoped>
-.bg-surface-800 {
-  background-color: var(--p-surface-800);
-}
 .gap-1px {
   gap: 1px;
 }
-.row-gap-1px {
-  row-gap: 1px;
-}
 .p-1px {
   padding: 1px;
-}
-
-.one-half {
-  width: 50%;
 }
 </style>
 

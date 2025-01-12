@@ -99,7 +99,7 @@ const chartOptions = {
     <template #header>
       <div class="p-dialog-title mx-2">
         <div>
-          {{ innerDate.month() + 1 }}<small class="text-500">&nbsp;{{ innerDate.year() }}</small>
+          {{ innerDate.month() + 1 }}<small class="text-surface-500 dark:text-surface-300">&nbsp;{{ innerDate.year() }}</small>
         </div>
       </div>
       <Button
@@ -112,18 +112,18 @@ const chartOptions = {
         class="p-button-text p-button-rounded p-button-secondary"
         @click="goNextMonth"
       />
-      <div class="flex-grow-1">
+      <div class="grow">
         <!-- spacer -->
       </div>
     </template>
-    <div class="flex flex-column justify-content-center align-items-center">
+    <div class="flex flex-col justify-center items-center">
       <Chart
         type="pie"
         :data="chartData"
         :options="chartOptions"
-        class="w-full md:w-30rem flex justify-content-center"
+        class="w-full md:w-[30rem] flex justify-center"
       />
-      <div class="flex flex-wrap justify-content-center m-2">
+      <div class="flex flex-wrap justify-center m-2">
         <LegendItem
           v-for="(category, idx) in payoutsStats"
           :key="idx"

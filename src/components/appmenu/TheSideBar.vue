@@ -62,7 +62,7 @@ bookListStore.load();
 
 <template>
   <Drawer v-model:visible="innerDisplay">
-    <div class="flex flex-column h-full">
+    <div class="flex flex-col h-full">
       <Tabs v-model:value="activeIndex">
         <TabList class="tab-vertical">
           <Tab v-for="(item, idx) in bookMenuItems" :key="item.label" :value="idx" class="p-menu-item-link" as="div"><i :class="item.icon" />{{ item.label }}</Tab>

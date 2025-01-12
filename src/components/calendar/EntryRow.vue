@@ -24,7 +24,7 @@ const category = computed(() => categoryListStore.categoryOf(props.entry.categor
 </script>
 
 <template>
-  <div class="flex align-items-center">
+  <div class="flex items-center">
     <Button
       icon="pi pi-pencil"
       class="p-button-text p-button-rounded p-button-secondary"
@@ -38,7 +38,7 @@ const category = computed(() => categoryListStore.categoryOf(props.entry.categor
       <div>{{ category?.name }}</div>
       <div>{{ props.entry.memo }}</div>
     </div>
-    <div class="flex-grow-1">
+    <div class="grow">
       <!-- spacer -->
     </div>
     <div :class="`text-${props.entry.division}`">
