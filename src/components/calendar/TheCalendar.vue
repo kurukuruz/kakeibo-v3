@@ -173,9 +173,6 @@ const balanceMonth = computed(() => {
 </template>
 
 <style scoped>
-.bg-surface-800 {
-  background-color: var(--p-surface-800);
-}
 .gap-1px {
   gap: 1px;
 }
