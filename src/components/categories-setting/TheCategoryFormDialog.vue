@@ -79,9 +79,9 @@ const upload = () => {
       />
       <div class="whitespace-nowrap">
         <CategorySelectionRow
-        :name="nameTemp"
-        :icon="iconTemp"
-        :color="colorTemp"
+          :name="nameTemp"
+          :icon="iconTemp"
+          :color="colorTemp"
         />
       </div>
       <div class="grow">
