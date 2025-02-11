@@ -1286,6 +1286,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@holiday-jp/holiday_jp@npm:^2.4.0":
+  version: 2.4.0
+  resolution: "@holiday-jp/holiday_jp@npm:2.4.0"
+  checksum: 10c0/20a3305869d86663a21a1f95902ab0d74021783ae82c4ef09983affa19adb12745881cf0907b82b70f6efd82c8e1d1711a91cab30e8113ed66e2b5f6553afce1
+  languageName: node
+  linkType: hard
+
 "@humanfs/core@npm:^0.19.1":
   version: 0.19.1
   resolution: "@humanfs/core@npm:0.19.1"
@@ -5158,6 +5165,7 @@ __metadata:
   resolution: "kakeibo-v3@workspace:."
   dependencies:
     "@eslint/js": "npm:^9.17.0"
+    "@holiday-jp/holiday_jp": "npm:^2.4.0"
     "@mdi/font": "npm:^7.4.47"
     "@primevue/themes": "npm:^4.2.5"
     "@stylistic/eslint-plugin": "npm:^2.12.1"
