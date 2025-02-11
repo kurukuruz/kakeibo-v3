@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Dayjs } from 'dayjs';
+import holidays from '@holiday-jp/holiday_jp';
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
 import { computed, ref } from 'vue';
@@ -66,6 +67,13 @@ const payout = computed(() => {
   const payoutEntries = entries.value.filter((e) => e.division === 'payout');
   return strOfSumAmount(payoutEntries);
 });
+
+const dateLabelClass = computed(() => {
+  const day = innerDate.value.day();
+  if (day === 0 || holidays.isHoliday(innerDate.value.toDate())) return '-sunday';
+  if (day === 6) return '-saturday';
+  return '';
+});
 </script>
 
 <template>
@@ -84,10 +92,7 @@ const payout = computed(() => {
     <template #header>
       <div
         class="p-dialog-title mx-2 date-label"
-        :class="{
-          '-saturday': innerDate.day() === 6,
-          '-sunday': innerDate.day() === 0
-        }"
+        :class="dateLabelClass"
       >
         <span>{{ innerDate.format('YYYY-MM-DD') }}</span>
         <span class="text-base">&nbsp;{{ innerDate.format('ddd') }}</span>

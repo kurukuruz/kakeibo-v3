@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Dayjs } from 'dayjs';
+import holidays from '@holiday-jp/holiday_jp';
 import { computed, reactive } from 'vue';
 import type { IEntryDoc } from '../../domains/entry';
 import { useEntryListStore } from '../../stores/entry-list';
@@ -17,21 +18,21 @@ const color = computed(() => {
   if (props.selected) {
     return 'white';
   }
+  if (props.value.day() === 0 || holidays.isHoliday(props.value.toDate())) {
+    return 'crimson';
+  }
   if (props.value.day() === 6) {
     return 'blueviolet';
-  }
-  if (props.value.day() === 0) {
-    return 'crimson';
   }
   return 'var(--p-text-color)';
 });
 const backgroundColor = computed(() => {
   if (props.selected) {
+    if (props.value.day() === 0 || holidays.isHoliday(props.value.toDate())) {
+      return 'crimson';
+    }
     if (props.value.day() === 6) {
       return 'blueviolet';
-    }
-    if (props.value.day() === 0) {
-      return 'crimson';
     }
     return 'var(--p-text-color)';
   }
