@@ -8,7 +8,7 @@ import router from './plugins/use-router';
 import App from './App.vue';
 import 'primeicons/primeicons.css';
 import '@mdi/font/css/materialdesignicons.css';
-import './assets/styles/global.scss';
+import './assets/styles/global.css';
 import './plugins/use-firebase';
 
 createApp(App)
